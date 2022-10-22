@@ -1,0 +1,2769 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-header">
+  <div class="container">
+    <div class="row" style="width: 100%">
+      <div class="col-sm-8 hd1">
+        <a class="navbar-brand" href="javascript:void(0);" style="margin-left: 20px; color: #FFF;"
+           (click)="reloadPage()"> {{ title }} </a>
+      </div>
+      <div class="col-sm-4 hd1">
+        <div class="company-email"><i class="fa fa-phone-square" aria-hidden="true"
+                                      style="color: #FFF;margin-left: 9px; "></i> 1900000000
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div id="step0" style="height: 100%" *ngIf="is0FormGroup">
+  <div class="LandingPage">
+    <div class="container">
+      <form id="submitForm" action="/dang-ky-tai-khoan/step2" method="post">
+        <input type="hidden" name="token" value="">
+        <div class="row" style="margin-top: 4%; width: 100%; margin-left: 0px;" id="openAccountRowStep0">
+          <div class="col-sm-3 d-none d-lg-block" style="display: contents">
+            <div style="margin-right: -15px">
+              <img src="./assets/img/open-account.png">
+            </div>
+          </div>
+          <div class="col-sm-9 col-lg-9 col-xl-9 contentright-step0 rounded" style="width: 100%">
+            <div style="margin-top: 35px">
+              <h4>Mở thẻ tín dụng</h4>
+            </div>
+            <div class="text-note-step0">Chào mừng Quý khách đăng ký mở tài khoản trực tuyến. Để bắt đầu đăng ký, vui
+              lòng chuẩn bị:
+            </div>
+            <div class="text-note-step0">1. CMND hoặc CCCD còn hiệu lực theo quy định.</div>
+            <div class="text-note-step0">
+
+              2. Máy tính hoặc Điện thoại có Camera.
+              <a href="javascript:void(0)" (click)="CheckCamera()" class="text-primary">Nhấn để kiểm tra.</a>
+              <video id="videoTakePhotoFront" width="100%" style="object-fit: cover; margin-top: -85px;display: none;"
+                     playsinline=""></video>
+            </div>
+            <div class="text-note-step0">3. Điện thoại di động để nhận OTP.</div>
+            <div class="text-note-step0">
+              <i>Trình duyệt khuyến nghị: Chrome (Window/Android/MacOS version 10.0.0 trở lên); Safari (iPhone/iPad
+                version 12.4.1 trở lên) - Vui lòng mở link trực tiếp tại các trình duyệt khuyến nghị nêu trên</i><br>
+            </div>
+
+            <div class="text-note-step0" style="margin-bottom: 20px;">
+              <button type="button" (click)="startReg()" class="btn btn-warning content3-step0"
+                      style="font-size: 16px;">Bắt đầu
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="step" style="height: 100%" *ngIf="!is0FormGroup">
+  <div class="LandingPage" id="OpenAccountPersonalInfor">
+    <div class="container">
+
+      <div class="row" style="margin-bottom: 20px;">
+        <div class="col-sm-12">
+          <div class="d-block">
+            <div>
+              <i class="fa fa-user icon-header" aria-hidden="true" style="color: #3F2763 "></i>
+              <img src="./assets/img/circle-open-account.png">
+              <span class="font-Roboto font-size16" style="color: #766C60"> {{ titleStep }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-2"></div>
+      </div>
+
+      <div class="row" style="margin-left: 7px; margin-right: 8px;">
+        <div class="col-sm-12" style="margin-bottom: 2%">
+          <div>
+            <div class="row">
+              <div class="col-sm-1 col-lg-1 d-block"></div>
+
+              <div class="col-sm-12 bg-white rounded">
+
+                <!--/////////-->
+                <!-- is1FormGroup -->
+                <div *ngIf="is1FormGroup">
+                  <form [formGroup]="_1FormGroup">
+                    <div>
+                      <div style="margin-top: 20px">
+                        <div class="font-Roboto">
+                          <span>Họ và tên </span>
+                          <span class="color-red">(*)</span>
+                        </div>
+                        <div style="margin-top: 16px">
+                          <input maxlength="12" type="text" class="form-control" formControlName="hoTen"
+                                 placeholder="Họ và tên" required>
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px">
+                        <div class="font-Roboto">
+                          <span>Số điện thoại </span>
+                          <span class="color-red">(*)</span>
+                        </div>
+                        <div style="margin-top: 16px">
+                          <input maxlength="12" type="text" class="form-control" formControlName="soDienThoai"
+                                 placeholder="Số điện thoại" required>
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px">
+                        <div class="font-Roboto">
+                          <span>Email </span>
+                          <span class="color-red">(*)</span>
+                        </div>
+                        <div style="margin-top: 16px">
+                          <input type="text" class="form-control" formControlName="email"
+                                 placeholder="Email" required>
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px">
+                        <div class="font-Roboto">
+                          <span>Mã kiểm tra </span>
+                          <span class="color-red">(*)</span>
+                        </div>
+                        <div style="margin-top: 16px">
+                          <input type="text" class="form-control" placeholder="Mã kiểm tra" formControlName="maKtra"
+                                 required>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div style="clear: both;margin-bottom: 10px;"></div>
+                  </form>
+                </div>
+                <!-- is2FormGroup -->
+                <div *ngIf="is2FormGroup">
+                  <div class="font-Roboto font-size16" style="margin-top: 26px; text-align: center">
+                    Xác thực OTP
+                  </div>
+                  <div class="font-Roboto-normal font-size14" style="margin-top: 12px; text-align: center">
+                    <div>Vui lòng nhập mã OTP gồm 6 chữ số đã gửi đến số điện thoại</div>
+                    <div style="margin-top: 8px;" id="openAuthOTP_phone">*******$phone</div>
+                    <div style="margin-top: 8px;">Thời gian hết hạn: <span id='exp'
+                                                                           style=" color: red;font-weight: bold;">
+                      </span> giây
+                    </div>
+                  </div>
+                  <div style="margin-top: 24px;text-align:center;">
+                    <form [formGroup]="_2FormGroup">
+                      <ng-otp-input [config]="conf_otp_input" (onInputChange)="onOtpChange($event)"></ng-otp-input>
+                      <input hidden formControlName="otp" [(ngModel)]="otpCorrect" required>
+                    </form>
+                  </div>
+                  <div style="margin-top: 35px; text-align: center; margin-bottom: 20px;">
+                    <button class="font-Roboto btn btn-dark" id="resendOtp">Gửi lại OTP</button>
+                  </div>
+                </div>
+
+                <!-- is3FormGroup -->
+                <div *ngIf="is3FormGroup">
+                  <div style="margin-top: 24px">
+                    <form [formGroup]="_3FormGroup">
+                      <br/>
+                      <p class="cus-text">Quý khách vui lòng lựa chọn giấy tờ tùy thân. Ưu tiên cung cấp CMND /
+                        CCCD.</p>
+                      <div style="margin-top: 16px">
+                        <div>
+                          <button class="btn btn-warning content3-step0" (click)="checkTypeGTTT('cccd')">CMND/CCCD
+                          </button>
+                        </div>
+                        <div style="margin-top: 20px">
+                          <div class="font-Roboto">
+                            <span>
+                              Hướng dẫn:<br><br>
+                            </span>
+                          </div>
+                          <div>
+                            1. Sử dụng giấy tờ gốc và còn hiệu lực. <br><br>
+
+                            2. Chụp đầy đủ, rõ nét, không mất góc, không chói sáng 2 mặt của CMND/CCCD.
+                          </div>
+                        </div>
+
+                        <div class="" style="margin-top: 20px ">
+                          <button class="btn btn-warning content3-step0" (click)="checkTypeGTTT('pp')">Hộ chiếu</button>
+                        </div>
+                        <div style="margin: 20px 20px">
+                          <div class="font-Roboto">
+                            <span>
+                              Hướng dẫn:<br><br>
+                            </span>
+                          </div>
+                          <div>
+                            1. Sử dụng giấy tờ gốc và còn hiệu lực. <br><br>
+
+                            2. Chụp đầy đủ, rõ nét, không mất góc, không chói sáng trang thông tin cá nhân (trang bìa)
+                            và trang chữ ký Cơ quan cấp hộ chiếu (trang 3).
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+
+                <!-- is4FormGroup -->
+                <div *ngIf="is4FormGroup">
+                  <form [formGroup]="_4FormGroup">
+                    <div>
+                      <div class="font-Roboto margin-top: 12px">
+                        <span>Chụp/ Tải ảnh mặt trước và sau giấy tờ của quý khách</span>
+                      </div>
+
+                      <p>
+                        * Quý khách vui lòng cung cấp hình chụp CMND/CCCD hoặc Hộ Chiếu còn hiệu lực, không bị mờ, bóng
+                        hoặc mất góc. Thông tin hiển thị đầy
+                        đủ và rõ ràng. Các định dạng file được chấp nhận: jpg, jpeg, png. Kích thước tệp tối đa: 10 MB.
+                      </p>
+
+                      <div style="margin-top: 24px" *ngIf="isCCCD">
+                        <div class="font-Roboto">
+                          <span>CMND/CCCD mặt trước</span>
+                          <span class="color-red">(*)</span>
+                        </div>
+                        <div style="margin-top: 16px">
+                          <div class="cus-webcam" *ngIf="isImgFront">
+                            <app-camera typecam="gttt" (getPicture)="handleImage($event, 'img_gttt')"
+                                        (btnGTTTEvent)="btnGTTTItem($event)"></app-camera>
+                            <br/>
+                            <div class="webcam-image">
+                              <img *ngIf="webcamImageFront" [src]="webcamImageFront.imageAsDataUrl"
+                                   style="width: 200px;"/>
+                              &nbsp;&nbsp;
+                              <img *ngIf="webcamImageBack" [src]="webcamImageBack.imageAsDataUrl"
+                                   style="width: 200px;"/>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div style="margin-top: 24px" *ngIf="isPP">
+                        <div class="font-Roboto">
+                          <span>Hộ chiếu</span>
+                          <span class="color-red">(*)</span>
+                        </div>
+                        <div style="margin-top: 16px">
+                          <div class="cus-webcam" *ngIf="isImgPP">
+                            <app-camera (getPicture)="handleImage($event, 'img_pp')"></app-camera>
+                            <br/>
+                            <div class="webcam-image" *ngIf="webcamImagePP">
+                              <img [src]="webcamImagePP.imageAsDataUrl"/>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <ng-template #noCameraExist>
+                      Thiết bị máy ảnh không khả dụng.
+                    </ng-template>
+
+                    <div style="clear: both;margin-bottom: 10px;"></div>
+                  </form>
+                </div>
+                <!-- is5FormGroup -->
+                <div *ngIf="is5FormGroup">
+                  <form [formGroup]="_5FormGroup">
+                    <div>
+                      <p>
+                        Điều chỉnh khuôn mặt nằm trong hình tròn.
+                      </p>
+                      <div style="margin-top: 24px">
+                        <div style="margin-top: 16px">
+                          <div class="cus-webcam" *ngIf="isImgFace">
+                            <app-camera typecam="face" [showbtn]="false"
+                                        (getPicture)="handleImage($event, 'img_face')"></app-camera>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <ng-template #noCameraExist>
+                      Thiết bị máy ảnh không khả dụng.
+                    </ng-template>
+
+                    <div style="clear: both;margin-bottom: 10px;"></div>
+                  </form>
+                </div>
+
+                <!--<div *ngIf="is6FormGroup">-->
+                <div [style]="is6FormGroup ? '': 'display: none;'">
+                  <form [formGroup]="_6FormGroup">
+                    <div>
+                      <div style="margin-top: 20px">
+                        <div class="font-Roboto">
+                          <span>Lựa chọn sản phẩm vay </span>
+                        </div>
+                        <div style="margin-top: 16px">
+                          <select class="form-control" name="theTinDung" (change)="onChangeLoaiTheTinDung($event)">
+                            <option>--Danh sách sản phẩm vay--</option>
+                            <option *ngFor="let t of theSPVay" [value]="t.maSPVay + '|' + t.tenSPVay"
+                                    [selected]="t.maSPVay===maSPVay">{{ t.tenSPVay }}</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px">
+                        <div class="font-Roboto">
+                          <span>Lựa chọn chi nhánh </span>
+                        </div>
+                        <div style="margin-top: 16px">
+                          <select class="form-control" name="chiNhanh">
+                            <option selected>--Danh sách chi nhánh quản lý khách hàng--</option>
+                            <option *ngFor="let c of chiNhanh" [value]="c.maChiNhanh">{{c.tenChiNhanh}}</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px">
+                        <div class="font-Roboto">
+                        </div>
+                        <div style="margin-top: 16px">
+                          <div class="form-group">
+                            <textarea formControlName="diaChiChiNhanh" class="form-control" rows="3"
+                                      placeholder="Địa chỉ" [(ngModel)]="diaChiChiNhanh"></textarea>
+                          </div>
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px">
+                        <div class="font-Roboto">
+                          <span>Thông tin người giới thiệu(nếu có) </span>
+                        </div>
+                        <div style="margin-top: 16px">
+                          <input formControlName="phoneGioiThieu" type="text" class="form-control"
+                                 [(ngModel)]="phoneGioiThieu" placeholder="Số điện thoại">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div style="clear: both;margin-bottom: 10px;"></div>
+                  </form>
+                </div>
+
+                <!--  <div>-->
+                <div *ngIf="is7FormGroup">
+                  <div class="text-note-step0">
+                    Quý khách vui lòng chuẩn bị tải lên bản gốc các giấy tờ được yêu cầu sau đây.
+                  </div>
+                  <form>
+                    <div>
+                      <div style="margin-top: 20px">
+                        <div class="font-Roboto">
+                          <span>Hồ sơ nhân thân </span>
+                        </div>
+                        <div style="margin-top: 16px;">
+                          <button class="form-control " style=" text-align: left" (click)="checkHSNT()">
+                            <div style="display: flex">
+                              <div style="width: 100%; overflow: hidden;white-space: nowrap">
+                                Danh sách giấy tờc hứng minh nhân thân
+                              </div>
+                              <div style="margin-left: 20px;"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
+                            </div>
+                          </button>
+
+                        </div>
+                        <div *ngIf="isShowHSNT">
+                          <form>
+                            <div>
+                              <div style="margin-top: 20px">
+                                <span>Quý khách vui lòng chụp đầy đủ các trang của hồ sơ nhân thân bản gốc.</span>
+                              </div>
+                              <div style="margin-top: 20px">
+                                <div class="font-Roboto">
+                                  <span>CMND/CCCD/HC</span>
+                                </div>
+
+                                <div class="fileSelect">
+                                  <label for="inputTag7" style="cursor:pointer;height: 5px;">
+                                    <i class="fa fa-plus"></i>
+                                    <br/>Tải lên
+                                  </label>
+                                  <input id="inputTag7" type="file" style="display: none;"
+                                         (change)="onFileSelected($event,'file_hsnt')">
+                                </div>
+                                <div class="file-upload">
+                                  {{fileNameHSNT}}
+                                  <i *ngIf="iconDeleteHSNT" (click)="deleteFile('file_hsnt')" class="fa fa-trash-o"
+                                     aria-hidden="true" style="float: right;"></i>
+                                </div>
+                              </div>
+                              <div style="margin-top: 20px">
+                                <div class="font-Roboto">
+                                  <span>Hộ khẩu thường trú/ tạm trú dài hạn (KT3)</span>
+                                </div>
+
+                                <div class="fileSelect">
+                                  <label for="inputTag0" style="cursor:pointer;height: 5px;">
+                                    <i class="fa fa-plus"></i>
+                                    <br/>Tải lên
+                                  </label>
+                                  <input id="inputTag0" type="file" style="display: none;"
+                                         (change)="onFileSelected($event,'file_hktt')">
+                                </div>
+                                <div class="file-upload">
+                                  {{fileNameHKTT}}
+                                  <i *ngIf="iconDeleteHKTT" (click)="deleteFile('file_hktt')" class="fa fa-trash-o"
+                                     aria-hidden="true" style="float: right;"></i>
+                                </div>
+                              </div>
+                              <div style="margin-top: 20px">
+                                <div class="font-Roboto">
+                                  <span>Giấy đăng ký kết hôn/ chứng nhận độc thân</span>
+                                </div>
+
+                                <div class="fileSelect">
+                                  <label for="inputTag99" style="cursor:pointer;height: 5px;">
+                                    <i class="fa fa-plus"></i>
+                                    <br/>Tải lên
+                                  </label>
+                                  <input id="inputTag99" type="file" style="display: none;"
+                                         (change)="onFileSelected($event,'file_gdkkh')">
+                                </div>
+                                <div class="file-upload">
+                                  {{fileNameGDKKH}}
+                                  <i *ngIf="iconDeleteGDKKH" (click)="deleteFile('file_gdkkh')" class="fa fa-trash-o"
+                                     aria-hidden="true" style="float: right;"></i>
+                                </div>
+                              </div>
+                              <div class="webcam-image-cccd">
+                                <img *ngIf="webcamImageFront" [src]="webcamImageFront.imageAsDataUrl"
+                                     style="width: 312px;"/>
+                                &nbsp;&nbsp;&nbsp;
+                                <img *ngIf="webcamImageBack" [src]="webcamImageBack.imageAsDataUrl"
+                                     style="width: 313px;"/>
+                              </div>
+                            </div>
+
+                            <div style="clear: both;margin-bottom: 10px;"></div>
+                          </form>
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px">
+                        <div class="font-Roboto">
+                          <span>Hồ sơ chứng minh mục đích vay </span>
+                        </div>
+                        <div style="margin-top: 16px">
+                          <button class="form-control bi bi-chevron-down bSelect"
+                                  style=" text-align: left;"
+                                  (click)="checkCMMDV()">
+                            <div style="display: flex">
+                              <div style="white-space: nowrap;width: 100%;overflow: hidden;">Danh sách giấy tờ chứng
+                                minh mục đích vay
+                              </div>
+                              <div style="margin-left: 20px;"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
+                            </div>
+                          </button>
+                        </div>
+                        <div *ngIf="isShowCMMDV">
+                          <form>
+                            <div>
+                              <div style="margin-top: 20px">
+                                <span>Quý khách vui lòng tải lên các giấy tờ chứng minh thu nhập.</span>
+                              </div>
+                              <div style="margin-top: 20px">
+                                <div class="font-Roboto">
+                                  <span>Phương án sử dụng vốn/ Hợp đồng cho vay/ Hợp đồng cầm cố/ Giấy nhận nợ</span>
+                                </div>
+                                <div class="fileSelect">
+                                  <label for="cmmdv" style="cursor:pointer;height: 5px;">
+                                    <i class="fa fa-plus"></i>
+                                    <br/>Tải lên
+                                  </label>
+                                  <input id="cmmdv" type="file" style="display: none;"
+                                         (change)="onFileSelected($event,'file_sdv')" w>
+                                </div>
+                                <div class="file-upload">
+                                  {{fileNameSDV}}
+                                  <i *ngIf="iconDeleteSDV" (click)="deleteFile('file_sdv')" class="fa fa-trash-o"
+                                     aria-hidden="true" style="float: right;"></i>
+                                </div>
+                              </div>
+                              <div style="margin-top: 20px">
+                                <div class="font-Roboto">
+                                  <span>Hợp đồng mua bán căn hộ/ Hợp đồng chuyển nhượng bất động sản</span>
+                                </div>
+                                <div class="fileSelect">
+                                  <label for="cmmdv1" style="cursor:pointer;height: 5px;">
+                                    <i class="fa fa-plus"></i>
+                                    <br/>Tải lên
+                                  </label>
+                                  <input id="cmmdv1" type="file" style="display: none;"
+                                         (change)="onFileSelected($event,'file_mbch')" w>
+                                </div>
+                                <div class="file-upload">
+                                  {{fileNameMBCH}}
+                                  <i *ngIf="iconDeleteMBCH" (click)="deleteFile('file_mbch')"
+                                     class="fa fa-trash-o" aria-hidden="true" style="float: right;"></i>
+                                </div>
+                              </div>
+                              <div style="margin-top: 20px">
+                                <div class="font-Roboto">
+                                  <span>Hợp đồng, hóa đơn xây, sửa nhà</span>
+                                </div>
+                                <div class="fileSelect">
+                                  <label for="cmmdv2" style="cursor:pointer;height: 5px;">
+                                    <i class="fa fa-plus"></i>
+                                    <br/>Tải lên
+                                  </label>
+                                  <input id="cmmdv2" type="file" style="display: none;"
+                                         (change)="onFileSelected($event,'file_hdx')">
+                                </div>
+                                <div class="file-upload">
+                                  {{fileNameHDX}}
+                                  <i *ngIf="iconDeleteHDX" (click)="deleteFile('file_hdx')" class="fa fa-trash-o"
+                                     aria-hidden="true" style="float: right;"></i>
+                                </div>
+                              </div>
+                              <div style="margin-top: 20px">
+                                <div class="font-Roboto">
+                                  <span>Hợp đồng mua ô tô/ Hợp đồng đặt cọc/ Hóa đơn VAT</span>
+
+                                </div>
+                                <div class="fileSelect">
+                                  <label for="cmmdv3" style="cursor:pointer;height: 5px;">
+                                    <i class="fa fa-plus"></i>
+                                    <br/>Tải lên
+                                  </label>
+                                  <input id="cmmdv3" type="file" style="display: none;"
+                                         (change)="onFileSelected($event,'file_moo')" w>
+                                </div>
+                                <div class="file-upload">
+                                  {{fileNameMOO}}
+                                  <i *ngIf="iconDeleteMOO" (click)="deleteFile('file_moo')" class="fa fa-trash-o"
+                                     aria-hidden="true" style="float: right;"></i>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div style="clear: both;margin-bottom: 10px;"></div>
+                          </form>
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px">
+                        <div class="font-Roboto">
+                          <span>Hồ sơ chứng minh thu nhập </span>
+                        </div>
+                        <div style="margin-top: 16px">
+                          <button class="form-control bi bi-chevron-down bSelect"
+                                  style=" text-align: left;"
+                                  (click)="checkGT()">
+                            <div style="display: flex">
+                              <div style="white-space: nowrap;width: 100%;overflow: hidden;">Danh sách giấy tờ chứng
+                                minh thu nhập
+                              </div>
+                              <div style="margin-left: 20px;"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
+                            </div>
+                          </button>
+                        </div>
+                        <div *ngIf="isShowCMTT">
+                          <form>
+                            <div>
+                              <div style="margin-top: 20px">
+                                <span>Quý khách vui lòng tải lên các giấy tờ chứng minh thu nhập.</span>
+                              </div>
+                              <div style="margin-top: 20px">
+                                <div class="font-Roboto">
+                                  <span>Hợp đồng lao động</span>
+                                </div>
+                                <div class="fileSelect">
+                                  <label for="inputTag1" style="cursor:pointer;height: 5px;">
+                                    <i class="fa fa-plus"></i>
+                                    <br/>Tải lên
+                                  </label>
+                                  <input id="inputTag1" type="file" style="display: none;"
+                                         (change)="onFileSelected($event,'file_hdld')" w>
+                                </div>
+                                <div class="file-upload">
+                                  {{fileNameHdld}}
+                                  <i *ngIf="iconDeleteHDLD" (click)="deleteFile('file_hdld')" class="fa fa-trash-o"
+                                     aria-hidden="true" style="float: right;"></i>
+                                </div>
+                              </div>
+                              <div style="margin-top: 20px">
+                                <div class="font-Roboto">
+                                  <span>Bảng lương</span>
+                                </div>
+                                <div class="fileSelect">
+                                  <label for="inputTag2" style="cursor:pointer;height: 5px;">
+                                    <i class="fa fa-plus"></i>
+                                    <br/>Tải lên
+                                  </label>
+                                  <input id="inputTag2" type="file" style="display: none;"
+                                         (change)="onFileSelected($event,'file_bangluong')" w>
+                                </div>
+                                <div class="file-upload">
+                                  {{fileNameBangLuong}}
+                                  <i *ngIf="iconDeleteBangLuong" (click)="deleteFile('file_bangluong')"
+                                     class="fa fa-trash-o" aria-hidden="true" style="float: right;"></i>
+                                </div>
+                              </div>
+                              <div style="margin-top: 20px">
+                                <div class="font-Roboto">
+                                  <span>Sao kê tài khoản ngân hàng </span>
+                                </div>
+                                <div class="fileSelect">
+                                  <label for="inputTag3" style="cursor:pointer;height: 5px;">
+                                    <i class="fa fa-plus"></i>
+                                    <br/>Tải lên
+                                  </label>
+                                  <input id="inputTag3" type="file" style="display: none;"
+                                         (change)="onFileSelected($event,'file_sktknn')">
+                                </div>
+                                <div class="file-upload">
+                                  {{fileNameSktknn}}
+                                  <i *ngIf="iconDeleteSKTKNN" (click)="deleteFile('file_sktknn')" class="fa fa-trash-o"
+                                     aria-hidden="true" style="float: right;"></i>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div style="clear: both;margin-bottom: 10px;"></div>
+                          </form>
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px">
+                        <div class="font-Roboto">
+                          <span>Hồ sơ tài sản đảm bảo </span>
+                        </div>
+                        <div style="margin-top: 16px">
+                          <button class="form-control bi bi-chevron-down" style=" text-align: left"
+                                  (click)="checkTSDB()">
+                            <div style="display: flex">
+                              <div style="width: 100%;">
+                                Danh sách tài sản đảm bảo
+                              </div>
+                              <div><i class="fa fa-angle-down" aria-hidden="true"></i></div>
+                            </div>
+                          </button>
+                        </div>
+                        <div *ngIf="isShowTSDB">
+                          <form>
+                            <div>
+                              <div style="margin-top: 20px">
+                                <span>Quý khách vui lòng tải lên các giấy tờ khác theo yêu cầu từng thời kỳ của Ngân hàng.</span>
+                              </div>
+                              <div style="margin-top: 20px">
+                                <div class="font-Roboto">
+                                  <span>Giấy tờ có giá</span>
+                                </div>
+                                <div class="fileSelect">
+                                  <label for="inputTag5" style="cursor:pointer;height: 5px;">
+                                    <i class="fa fa-plus"></i>
+                                    <br/>Tải lên
+                                  </label>
+                                  <input id="inputTag5" type="file" style="display: none;"
+                                         (change)="onFileSelected($event,'file_gt')">
+                                </div>
+                                <div class="file-upload">
+                                  {{fileNameGT}}
+                                  <i *ngIf="iconDeleteGT" (click)="deleteFile('file_gt')" class="fa fa-trash-o"
+                                     aria-hidden="true" style="float: right;"></i>
+                                </div>
+                              </div>
+                              <div style="margin-top: 20px">
+                                <div class="font-Roboto">
+                                  <span>Giấy chứng nhận sở hữu tài sản</span>
+                                </div>
+                                <div class="fileSelect">
+                                  <label for="inputTag6" style="cursor:pointer;height: 5px; ">
+                                    <i class="fa fa-plus"></i>
+                                    <br/>Tải lên
+                                  </label>
+                                  <input id="inputTag6" type="file" style="display: none;"
+                                         (change)="onFileSelected($event,'file_gcn')" w>
+                                </div>
+                                <div class="file-upload">
+                                  {{fileNameGCN}}
+                                  <i *ngIf="iconDeleteGCN" (click)="deleteFile('file_gcn')" class="fa fa-trash-o"
+                                     aria-hidden="true" style="float: right;"></i>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div style="clear: both;margin-bottom: 10px;"></div>
+                          </form>
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <div style="clear: both;margin-bottom: 20px;"></div>
+                  </form>
+                </div>
+
+                <!--<div *ngIf="is9FormGroup">-->
+                <div [style]="is8FormGroup ? '': 'display: none;'">
+                  <!--  <div>-->
+                  <div class="text-note-step0">
+                    <h4>THÔNG TIN CHUNG</h4>
+                  </div>
+                  <form>
+                    <div>
+                      <div style="margin-top: 30px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Họ và tên</span>
+                        </div>
+                        <div class="col-sm-8 ">
+                          <input [(ngModel)]="this.appService.ttinCNhan.hoTen" type="text" class="form-control"
+                                 id="hoTen" name="hoTen"
+                          >
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Ngày sinh</span>
+                        </div>
+                        <div class="col-sm-8 ">
+                          <input [(ngModel)]="this.appService.ttinCNhan.ngaySinh" type="text" class="form-control"
+                                 id="ngaySinh" name="ngaySinh"
+                          >
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Giới tính</span>
+                        </div>
+                        <div class="col-sm-8 ">
+                          <input [(ngModel)]="this.appService.ttinCNhan.gioiTinh" type="text" class="form-control"
+                                 id="gioiTinh" name="gioiTinh"
+                          >
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Quốc tịch</span>
+                        </div>
+                        <div class="col-sm-8 ">
+                          <input [(ngModel)]="this.appService.ttinCNhan.quocTich" type="text" class="form-control"
+                                 id="quocTich" name="quocTich"
+                          >
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Số CMND/CCCD/Hộ chiếu</span>
+                        </div>
+                        <div class="col-sm-8 ">
+                          <input [(ngModel)]="this.appService.ttinCNhan.soCmt" type="text" class="form-control"
+                                 id="soCmt" name="soCmt"
+                          >
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Nơi cấp</span>
+                        </div>
+                        <div class="col-sm-8 ">
+                          <input [(ngModel)]="this.appService.ttinCNhan.noiCap" type="text" class="form-control"
+                                 id="noiCap" name="noiCap"
+                          >
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Ngày cấp</span>
+                        </div>
+                        <div class="col-sm-8 ">
+                          <input [(ngModel)]="this.appService.ttinCNhan.ngayCap" type="text" class="form-control"
+                                 id="ngayCap" name="ngayCap"
+                          >
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Địa chỉ nơi cư trú</span>
+                        </div>
+                        <div class="col-sm-8 ">
+                          <input [(ngModel)]="this.appService.ttinCNhan.noiTru" type="text" class="form-control"
+                                 id="dChiTTru" name="dChiTTru"
+                          >
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Nơi ở hiện tại</span>
+                        </div>
+                        <div class="col-sm-8 ">
+                          <input type="text" class="form-control" id="dChiNoiO" name="dChiNoiO"
+                                 placeholder="Nếu khác địa chỉ nơi cư trú">
+                        </div>
+                      </div>
+                      <div style="margin-top: 30px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Thời gian ở địa chỉ hiện tại</span>
+                        </div>
+                        <div class="col-sm-8 ">
+                          <input type="text" class="form-control"
+                                 placeholder="...năm...tháng">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Điện thoại nơi cư trú</span>
+                        </div>
+                        <div class="col-sm-8 ">
+                          <input type="text" class="form-control"
+                                 placeholder="Điện thoại nơi cư trú">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Điện thoại nơi ở hiện tại</span>
+                        </div>
+                        <div class="col-sm-8 ">
+                          <input type="text" class="form-control"
+                                 placeholder="Điện thoại nơi ở hiện tại">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Điện thoại di dộng</span>
+                        </div>
+                        <div class="col-sm-8 ">
+                          <input type="text" class="form-control" id="dienThoai" name="dienThoai"
+                                 placeholder="Tự động hiển thị từ DB">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Email</span>
+                        </div>
+                        <div class="col-sm-8 ">
+                          <input type="text" class="form-control" id="email" name="email"
+                                 placeholder="Tự động hiển thị từ DB">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Trình độ học vấn</span>
+                        </div>
+                        <div class="col-sm-4 ">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="tdhv" id="daihoc">
+                            <label class="form-check-label">
+                              Đại học
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="tdhv" id="trungcap">
+                            <label class="form-check-label">
+                              Trung cấp
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="tdhv" id="caodang">
+                            <label class="form-check-label">
+                              Cao đẳng
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-sm-4 ">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="tdhv" id="trendaihoc">
+                            <label class="form-check-label">
+                              Trên đại học
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="tdhv" id="duoitrungcap">
+                            <label class="form-check-label">
+                              Dưới trung cấp
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="tdhv" id="trinhdohvan_khac">
+                            <label class="form-check-label">
+                              Khác
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Lý lịch tư pháp</span>
+                        </div>
+                        <div class="col-sm-8 ">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" id="Radio13" name="lltp">
+                            <label class="form-check-label" for="Radio13">
+                              Tốt, chưa có tiền án tiền sự
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" id="Radio14" name="lltp">
+                            <label class="form-check-label" for="Radio14">
+                              Có tiền án, tiền sự hoặc là đối tượng nghi vấn hoặc bị truy tố pháp luật
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Loại nhà ở</span>
+                        </div>
+                        <div class="col-sm-4 ">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="lno">
+                            <label class="form-check-label">
+                              Biệt thự
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="lno">
+                            <label class="form-check-label">
+                              Nhà liền kề
+                            </label>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-4 ">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="lno">
+                            <label class="form-check-label">
+                              Nhà đất
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="lno">
+                            <label class="form-check-label">
+                              Chung cư
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Hình thức sở hữu nhà ở</span>
+                        </div>
+                        <div class="col-sm-8 ">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="htsh">
+                            <label class="form-check-label">
+                              Ở chung nhà bố mẹ(trừ trường hợp bố mẹ cũng đi thuê nhà)
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="htsh">
+                            <label class="form-check-label">
+                              Nhà mua trả chậm, trả dần
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div style="margin-top: 5px" class="row">
+                        <div class="col-sm-4">
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="htsh">
+                            <label class="form-check-label">
+                              Nhà riêng
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="htsh">
+                            <label class="form-check-label">
+                              Nhà thuê mua
+                            </label>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="htsh">
+                            <label class="form-check-label">
+                              Nhà đi thuê
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="htsh">
+                            <label class="form-check-label">
+                              Khác
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div style="margin-top: 5px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Tình trạng hôn nhân</span>
+                        </div>
+                        <div class="col-sm-2">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="tthn" id="docthan">
+                            <label class="form-check-label">
+                              Độc thân
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="tthn" id="lythan">
+                            <label class="form-check-label">
+                              Ly thân
+                            </label>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-2">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="tthn" id="kethon">
+                            <label class="form-check-label">
+                              Kết hôn
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="tthn" id="lyhon">
+                            <label class="form-check-label">
+                              Ly hôn
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="tthn" id="goa">
+                            <label class="form-check-label">
+                              Góa
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="tthn" id="tinhtranghnhan_khac">
+                            <label class="form-check-label">
+                              Khác
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div style="margin-top: 30px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Số người phụ thuộc kinh tế</span>
+                        </div>
+                        <div class="col-sm-8 ">
+                          <input type="text" class="form-control"
+                                 placeholder="Số người phụ thuộc kinh tế">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Thời gian còn lại ở Việt Nam</span>
+                        </div>
+                        <div class="col-sm-8 ">
+                          <input type="text" class="form-control"
+                                 placeholder="Với người không cư trú(tháng)">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Tên mẹ hoặc trường tiểu học</span>
+                        </div>
+                        <div class="col-sm-8 ">
+                          <input type="text" class="form-control"
+                                 placeholder="Tên đầy đủ">
+                        </div>
+                      </div>
+                    </div>
+                    <div style="clear: both;margin-bottom: 10px;"></div>
+                  </form>
+                </div>
+
+                <!--        <div *ngIf="is10FormGroup">-->
+                <div [style]="is9FormGroup ? '': 'display: none;'">
+                  <div class="text-note-step0">
+                    <h4>THÔNG TIN CHUNG</h4>
+                  </div>
+                  <form>
+                    <div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Tình trạng làm việc</span>
+                        </div>
+                        <div class="col-sm-4 ">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio">
+                            <label class="form-check-label">
+                              Toàn thời gian
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio">
+                            <label class="form-check-label">
+                              Tự kinh doanh
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio">
+                            <label class="form-check-label">
+                              Sinh viên
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio">
+                            <label class="form-check-label">
+                              Khác (ghi rõ)
+                            </label>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-4 ">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio">
+                            <label class="form-check-label">
+                              Bán thời gian
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio">
+                            <label class="form-check-label">
+                              Hưu trí
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio">
+                            <label class="form-check-label">
+                              Nội trợ
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div style="margin-top: 10px" class="row">
+                        <div class="col-sm-4">
+
+                        </div>
+                        <div class="col-sm-8 ">
+                          <input type="text" class="form-control"
+                                 placeholder="Tình trạng việc làm khác">
+                        </div>
+                      </div>
+
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Tên đơn vị công tác , quản lý</span>
+                        </div>
+                        <div class="col-sm-8 ">
+                          <input type="text" class="form-control" id="tenCTy" name="tenCTy"
+                                 placeholder="Tên đơn vị công tác , quản lý">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Nghề nghiệp</span>
+                        </div>
+                        <div class="col-sm-8 ">
+                          <input type="text" class="form-control"
+                                 placeholder="Nghề nghiệp">
+                        </div>
+                      </div>
+
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Vị trí công tác</span>
+                        </div>
+                        <div class="col-sm-8">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio">
+                            <label class="form-check-label">
+                              Cán bộ nhân viên (ghi rõ chức danh)
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio">
+                            <label class="form-check-label">
+                              Cán bộ quản lý điều hành (ghi rõ vị trí, chức vụ)
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Ghi rõ vị trí công tác</span>
+                        </div>
+                        <div class="col-sm-8 ">
+                          <input type="text" class="form-control"
+                                 placeholder="Chức danh/Vị trí, chức vụ">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Nơi công tác</span>
+                        </div>
+                        <div class="col-sm-8 ">
+                          <input type="text" class="form-control"
+                                 placeholder="Nơi công tác">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Điện thoại nơi công tác</span>
+                        </div>
+                        <div class="col-sm-8 ">
+                          <input type="text" class="form-control"
+                                 placeholder="Điện thoại nơi công tác">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Hình thức HĐLĐ</span>
+                        </div>
+                        <div class="col-sm-8 ">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio">
+                            <label class="form-check-label">
+                              Không xác định thời hạn
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-4">
+                        </div>
+                        <div class="col-sm-4 ">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio">
+                            <label class="form-check-label">
+                              Trên 3 năm
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio">
+                            <label class="form-check-label">
+                              Dưới 1 năm
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-sm-4 ">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio">
+                            <label class="form-check-label">
+                              1 - 3 năm
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio">
+                            <label class="form-check-label">
+                              Khác
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Thời gian làm việc gần nhất</span>
+                        </div>
+                        <div class="col-sm-8 ">
+                          <input type="text" class="form-control"
+                                 placeholder="Tại đơn vị công tác hiện tại">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Thời gian làm việc trước đó</span>
+                        </div>
+                        <div class="col-sm-8 ">
+                          <input type="text" class="form-control"
+                                 placeholder="Tại đơn vị công tác trước đó">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Thời gian hết hạn HĐLĐ</span>
+                        </div>
+                        <div class="col-sm-8 ">
+                          <input type="text" class="form-control"
+                                 placeholder="DD/MM/YYYY">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Kinh nghiệm công tác</span>
+                        </div>
+                        <div class="col-sm-8 ">
+                          <input type="text" class="form-control"
+                                 placeholder="Tổng thời gian công tác">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Mã số thuế cá nhân</span>
+                        </div>
+                        <div class="col-sm-8 ">
+                          <input type="text" class="form-control"
+                                 placeholder="Tự động hiển thị (nếu có)">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="text-note-step0">
+                        <span>Loại hình đơn vị công tác</span>
+                      </div>
+                      <div style="margin-top: 20px">
+                        <div class="form-check" style="margin-top: 5px">
+                          <input class="form-check-input" type="radio" id="loaiHinhHD1" name="loaiHinhHD">
+                          <label class="form-check-label">
+                            Cơ quan Đảng, cơ quan Nhà nước (Bộ, Ban, Ngành...)
+                          </label>
+                        </div>
+                        <div class="form-check" style="margin-top: 5px">
+                          <input class="form-check-input" type="radio" id="loaiHinhHD2" name="loaiHinhHD">
+                          <label class="form-check-label">
+                            Tổ chức chính trị, xã hội, nghề nghiệp
+                          </label>
+                        </div>
+                        <div class="form-check" style="margin-top: 5px">
+                          <input class="form-check-input" type="radio" id="loaiHinhHD3" name="loaiHinhHD">
+                          <label class="form-check-label">
+                            Đơn vị lực lượng vũ trang
+                          </label>
+                        </div>
+                        <div class="form-check" style="margin-top: 5px">
+                          <input class="form-check-input" type="radio" id="loaiHinhHD4" name="loaiHinhHD">
+                          <label class="form-check-label">
+                            Đơn vị sự nghiệp công lập, cơ sở kinh doanh trực thuộc Cơ quan Đảng, cơ quan Nhà nước
+                          </label>
+                        </div>
+                        <div class="form-check" style="margin-top: 5px">
+                          <input class="form-check-input" type="radio" id="loaiHinhHD5" name="loaiHinhHD">
+                          <label class="form-check-label">
+                            Tập đoàn kinh tế Nhà nước, Tổng công ty 90/91, Tổng công ty Nhà nước đặc biệt
+                          </label>
+                        </div>
+                        <div class="form-check" style="margin-top: 5px">
+                          <input class="form-check-input" type="radio" id="loaiHinhHD6" name="loaiHinhHD">
+                          <label class="form-check-label">
+                            Doanh nghiệp Nhà nước
+                          </label>
+                        </div>
+                        <div class="form-check" style="margin-top: 5px">
+                          <input class="form-check-input" type="radio" id="loaiHinhHD7" name="loaiHinhHD">
+                          <label class="form-check-label">
+                            Cơ quan thuộc lĩnh vực tài chính
+                          </label>
+                        </div>
+                        <div class="form-check" style="margin-top: 5px">
+                          <input class="form-check-input" type="radio" id="loaiHinhHD8" name="loaiHinhHD">
+                          <label class="form-check-label">
+                            Doanh nghiệp có vốn đầu tư nước ngoài
+                          </label>
+                        </div>
+                        <div class="form-check" style="margin-top: 5px">
+                          <input class="form-check-input" type="radio" id="loaiHinhHD9" name="loaiHinhHD">
+                          <label class="form-check-label">
+                            Tập đoàn, Tổng công ty thuộc khu vực tư nhân, Đơn vị sự nghiệp ngoài công lập
+                          </label>
+                        </div>
+                        <div class="form-check" style="margin-top: 5px">
+                          <input class="form-check-input" type="radio" id="loaiHinhHD10" name="loaiHinhHD">
+                          <label class="form-check-label">
+                            Công ty TNHH tư nhân, doanh nghiệp cổ phần, công ty hợp danh
+                          </label>
+                        </div>
+                        <div class="form-check" style="margin-top: 5px">
+                          <input class="form-check-input" type="radio" id="loaiHinhHD11" name="loaiHinhHD">
+                          <label class="form-check-label">
+                            Doanh nghiệp tư nhân
+                          </label>
+                        </div>
+                        <div class="form-check" style="margin-top: 5px">
+                          <input class="form-check-input" type="radio" id="loaiHinhHD12" name="loaiHinhHD">
+                          <label class="form-check-label">
+                            Cơ quan, tổ chức hành chính nước ngoài tại Việt Nam (Đại sứ quán, Tổ chức phi chính phủ, Văn
+                            phòng đại diện)
+                          </label>
+                        </div>
+                        <div class="form-check" style="margin-top: 5px">
+                          <input class="form-check-input" type="radio" id="loaiHinhHD13" name="loaiHinhHD">
+                          <label class="form-check-label">
+                            Hộ kinh doanh cá thể, tiểu thương và cá nhân khác
+                          </label>
+                        </div>
+                      </div>
+                      <div class="row" style="margin-top: 5px">
+                        <div class="col-sm-12" style="display: flex">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" id="loaiHinhHDong_Khac" name="loaiHinhHD">
+                            <label class="form-check-label">
+                              Khác (ghi rõ)
+                            </label>
+                          </div>
+                          <div class="font-Roboto" style="width: 87%;margin-left: 45px">
+                            <input type="text" class="form-control form-control-sm"
+                                   placeholder="Loại hình đơn vị công tác">
+                          </div>
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px">
+                        <span>Lĩnh vực nghề nghiệp hiện tại</span>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="lvnn">
+                            <label class="form-check-label">
+                              Tài chính, ngân hàng, bảo hiểm
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="lvnn">
+                            <label class="form-check-label">
+                              Truyền thông, báo chí
+                            </label>
+                          </div>
+                          <div class="form-check" style="margin-top: 5px">
+                            <input class="form-check-input" type="radio" name="lvnn">
+                            <label class="form-check-label">
+                              Đoàn thể, hành chính
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="lvnn">
+                            <label class="form-check-label">
+                              An ninh, quốc phòng
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="lvnn">
+                            <label class="form-check-label">
+                              Thương mại, dịch vụ
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="lvnn">
+                            <label class="form-check-label">
+                              Văn hóa, nghệ thuật
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="lvnn">
+                            <label class="form-check-label">
+                              Nông, lâm, thủy sản
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="lvnn">
+                            <label class="form-check-label">
+                              Bất động sản
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="lvnn">
+                            <label class="form-check-label">
+                              Công nghiệp
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="lvnn">
+                            <label class="form-check-label">
+                              Viễn thông
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="lvnn">
+                            <label class="form-check-label">
+                              Xây dựng
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="lvnn">
+                            <label class="form-check-label">
+                              Giáo dục
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="lvnn">
+                            <label class="form-check-label">
+                              Y tế
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="lvnn">
+                            <label class="form-check-label">
+                              Khác
+                            </label>
+                          </div>
+                        </div>
+
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-1 ">
+                          <span>Ghi rõ</span>
+                        </div>
+                        <div class="col-sm-11 ">
+                          <input type="text" class="form-control"
+                                 placeholder="Lĩnh vực khác">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px">
+                        <span>Lĩnh vực nghề nghiệp trước đó</span>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="lvnntd">
+                            <label class="form-check-label">
+                              Tài chính, ngân hàng, bảo hiểm
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="lvnntd">
+                            <label class="form-check-label">
+                              Truyền thông, báo chí
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="lvnntd">
+                            <label class="form-check-label">
+                              Đoàn thể, hành chính
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="lvnntd">
+                            <label class="form-check-label">
+                              An ninh, quốc phòng
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="lvnntd">
+                            <label class="form-check-label">
+                              Thương mại, dịch vụ
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="lvnntd">
+                            <label class="form-check-label">
+                              Văn hóa, nghệ thuật
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="lvnntd">
+                            <label class="form-check-label">
+                              Nông, lâm, thủy sản
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="lvnntd">
+                            <label class="form-check-label">
+                              Bất động sản
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="lvnntd">
+                            <label class="form-check-label">
+                              Công nghiệp
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="lvnntd">
+                            <label class="form-check-label">
+                              Viễn thông
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="lvnntd">
+                            <label class="form-check-label">
+                              Xây dựng
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="lvnntd">
+                            <label class="form-check-label">
+                              Giáo dục
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="lvnntd">
+                            <label class="form-check-label">
+                              Y tế
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="lvnntd">
+                            <label class="form-check-label">
+                              Khác
+                            </label>
+                          </div>
+                        </div>
+
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-1 ">
+                          <span>Ghi rõ</span>
+                        </div>
+                        <div class="col-sm-11 ">
+                          <input type="text" class="form-control"
+                                 placeholder="Lĩnh vực khác">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Hình thức thanh toán lương</span>
+                        </div>
+                        <div class="col-sm-4 ">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="htttl">
+                            <label class="form-check-label">
+                              Chuyển khoản qua TK mở tại NH
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="htttl">
+                            <label class="form-check-label">
+                              Chuyển khoản qua TK mở ở NH khác
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="htttl">
+                            <label class="form-check-label">
+                              Tiền mặt
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="htttl">
+                            <label class="form-check-label">
+                              Khác (ghi rõ)
+                            </label>
+                          </div>
+                        </div>
+
+                      </div>
+                      <div style="margin-top: 10px" class="row">
+                        <div class="col-sm-4">
+                        </div>
+                        <div class="col-sm-8 ">
+                          <input type="text" class="form-control"
+                                 placeholder="Hình thức thanh toán lương">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Số tài khoản mở tại NH khác</span>
+                        </div>
+                        <div class="col-sm-8 ">
+                          <input type="text" class="form-control"
+                                 placeholder="Tài khoản thanh toán VNĐ">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Tài khoản tại Ngân hàng</span>
+                        </div>
+                        <div class="col-sm-8 ">
+                          <select class="form-control">
+                            <option selected>Danh sách ngân hàng</option>
+                            <option value="1">Ngân hàng Vietcombank</option>
+                            <option value="2">Ngân hàng MBbank</option>
+                            <option value="3">Ngân hàng BIDV</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div style="clear: both;margin-bottom: 10px;"></div>
+                  </form>
+                </div>
+
+                <!-- is17FormGroup -->
+                <div *ngIf="is10FormGroup">
+                  <form>
+                    <div>
+                      <div style="margin-top: 20px">
+                        <div class="font-Roboto">
+                          <h4>TÌNH HÌNH THU NHẬP </h4>
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px">
+                        <div class="font-Roboto">
+                          <span>1. Tài sản </span>
+                        </div>
+                      </div>
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-4">
+                              <select id="loaiThe" class="form-control">
+                                <option selected>Loại tài sản</option>
+                                <option value="1">Tải sản 1</option>
+                                <option value="2">Tải sản 2</option>
+                                <option value="3">Tài sản 3</option>
+                              </select>
+                        </div>
+                        <div class="col-sm-8">
+                          <input type="text" class="form-control" placeholder="Mô tả tóm tắt tài sản"/>
+                        </div>
+                      </div>
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-4">
+                        </div>
+                        <div class="col-sm-2">
+                          <input type="radio" name="loaits"/> Sở hữu riêng
+                        </div>
+                        <div class="col-sm-2">
+                          <input type="radio" name="loaits"/> Sở hữu chung
+                        </div>
+                      </div>
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-4">
+                        </div>
+                        <div class="col-sm-8">
+                          <input type="text" class="form-control" placeholder="Giá trị tài sản (VNĐ)"/>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <div style="margin-top: 20px">
+                        <div class="font-Roboto">
+                          <span>2. Nợ </span>
+                        </div>
+                        <div style="margin-top: 10px">
+                          <span>Các khoản nợ cá nhân, tổ chức, tổ chức tín dụng (bao gồm cả hạn mức thẻ tín dụng, nếu có), nợ phải trả khác</span>
+                        </div>
+                      </div>
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-4">
+                          Bên cho vay
+                        </div>
+                        <div class="col-sm-8">
+                          <input type="text" class="form-control" placeholder="Tên bên cho vay"/>
+                        </div>
+                      </div>
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-4">
+                          Số tiền vay
+                        </div>
+                        <div class="col-sm-8">
+                          <input type="text" class="form-control" placeholder="Số tiền vay (VNĐ)"/>
+                        </div>
+                      </div>
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-4">
+                          Dư nợ
+                        </div>
+                        <div class="col-sm-8">
+                          <input type="text" class="form-control" placeholder="Dư nợ (VNĐ)"/>
+                        </div>
+                      </div>
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-4">
+                          Thời hạn vay
+                        </div>
+                        <div class="col-sm-8">
+                          <input type="text" class="form-control" placeholder="Thời hạn vay"/>
+                        </div>
+                      </div>
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-4">
+                          Biện pháp bảo đảm
+                        </div>
+                        <div class="col-sm-8">
+                          <input type="radio" name="bienphapdambao"/> Không có bảo đảm <br>
+                          <input type="radio" name="bienphapdambao"/> Bảo đảm bằng tài sản <br>
+                          <input type="radio" name="bienphapdambao"/> Bảo đảm bằng bảo lãnh <br>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <div style="margin-top: 20px">
+                        <div class="font-Roboto">
+                          <span>3. Thu nhập</span>
+                        </div>
+                        <div style="margin-top: 10px">
+                          <span>Tổng thu nhập hàng tháng</span>
+                        </div>
+                      </div>
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-4">
+                          Lương hàng tháng
+                        </div>
+                        <div class="col-sm-8">
+                          <input type="text" class="form-control" placeholder="Sau khi trừ thuế, phí (VNĐ)"/>
+                        </div>
+                      </div>
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-4">
+                          Thu nhập khác nếu có
+                        </div>
+                        <div class="col-sm-8">
+                          <input type="text" class="form-control" placeholder="Sau khi trừ thuế, phí (VNĐ)"/>
+                        </div>
+                      </div>
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-4">
+                          Liệt kê thu nhập khác nếu có
+                        </div>
+                        <div class="col-sm-8">
+                          <input type="text" class="form-control" placeholder="Liệt kê và đính kèm tài liệu"/>
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px">
+                        <div class="fileSelect">
+                          <label for="tt" style="cursor:pointer;height: 5px;">
+                            <i class="fa fa-plus"></i>
+                            <br/>Tải lên
+                          </label>
+                          <input id="tt" type="file" style="display: none;"
+                                 (change)="onFileSelected($event,'file_tt')">
+                        </div>
+                        <div class="file-upload">
+                          {{fileNameTT}}
+                          <i *ngIf="iconDeleteTT" (click)="deleteFile('file_tt')" class="fa fa-trash-o"
+                             aria-hidden="true" style="float: right;"></i>
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px;">
+                        <span>Tổng chi phí hàng tháng</span>
+                      </div>
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-4">
+                          Chi phí sinh hoạt
+                        </div>
+                        <div class="col-sm-8">
+                          <input type="text" class="form-control" placeholder="(VNĐ)"/>
+                        </div>
+                      </div>
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-4">
+                          Chi cho người phụ thuộc
+                        </div>
+                        <div class="col-sm-8">
+                          <input type="text" class="form-control" placeholder="(VNĐ)"/>
+                        </div>
+                      </div>
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-4">
+                          Chi phí khác nếu có
+                        </div>
+                        <div class="col-sm-8">
+                          <input type="text" class="form-control" placeholder="(VNĐ)"/>
+                        </div>
+                      </div>
+                    </div>
+                    <div style="clear: both;margin-bottom: 10px;"></div>
+                  </form>
+                </div>
+
+
+                <!--<div *ngIf="is11FormGroup">-->
+                <div [style]="is11FormGroup ? '': 'display: none;'">
+                  <form>
+                    <div class="text-note-step0">
+                      <h4>THÔNG TIN THAM CHIẾU</h4>
+                    </div>
+                    <div>
+                    <div style="margin-top: 20px" class="font-Roboto">
+                      <span>Sử dụng trong trường hợp không liên lạc được với Khách hàng.</span>
+                    </div>
+                    <div style="margin-top: 20px" class="row">
+                      <div class="col-sm-4 ">
+                        <span>Họ và tên</span>
+                      </div>
+                      <div class="col-sm-8 ">
+                        <input type="text" class="form-control"
+                               placeholder="Họ và tên">
+                      </div>
+                    </div>
+                    <div style="margin-top: 20px" class="row">
+                      <div class="col-sm-4 ">
+                        <span>Quan hệ với Chủ thẻ chính</span>
+                      </div>
+                      <div class="col-sm-8 ">
+                        <input type="text" class="form-control"
+                               placeholder="Bố/mẹ/anh/chị/em/vợ/chồng">
+                      </div>
+                    </div>
+                    <div style="margin-top: 20px" class="row">
+                      <div class="col-sm-4 ">
+                        <span>Địa chỉ liên hệ</span>
+                      </div>
+                      <div class="col-sm-8 ">
+                        <input type="text" class="form-control"
+                               placeholder="Địa chỉ">
+                      </div>
+                    </div>
+                    <div style="margin-top: 20px" class="row">
+                      <div class="col-sm-4 ">
+                        <span>Điện thoại liên hệ</span>
+                      </div>
+                      <div class="col-sm-8 ">
+                        <input type="text" class="form-control"
+                               placeholder="Địa chỉ">
+                      </div>
+                    </div>
+                    <div style="clear: both;margin-bottom: 10px;"></div>
+                    </div>
+                  </form>
+                </div>
+                <div [style]="is12FormGroup ? '': 'display: none;'">
+                  <div class="text-note-step0">
+                    <h4>PHƯƠNG ÁN SỬ DỤNG VỐN</h4>
+                  </div>
+                  <form>
+                    <div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Mục đích sử dụng vốn</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Ghi rõ nhu cầu tiêu dùng">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Chi phí</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Chi phí tương ứng (VNĐ)">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Phương thức vay</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Phương thức vay">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Tổng tiền vay</span>
+                        </div>
+                        <div class="col-sm-8 ">
+                          <input type="text" class="form-control"
+                                 placeholder="Tổng số tiền vay (VNĐ)">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Thời hạn vay</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Thời hạn vay (tháng)">
+                        </div>
+                      </div>
+
+
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Biện pháp bảo đảm khoản vay</span>
+                        </div>
+                       <div class="col-sm-8">
+                         <div class="row">
+                           <div class="col-sm-4">
+                             <div class="form-check">
+                               <input class="form-check-input" type="radio" name="bdkv">
+                               <label class="form-check-label">
+                                 Thế chấp tài sản
+                               </label>
+                             </div>
+                           </div>
+                           <div class="col-sm-4">
+                             <div class="form-check">
+                               <input class="form-check-input" type="radio" name="bdkv">
+                               <label class="form-check-label">
+                                 Bảo lãnh
+                               </label>
+                             </div>
+                           </div>
+                         </div>
+                         <div class="row">
+                           <div class="col-sm-4">
+                             <div class="form-check">
+                               <input class="form-check-input" type="radio" name="bdkv">
+                               <label class="form-check-label">
+                                 Cầm cố tài sản
+                               </label>
+                             </div>
+                           </div>
+                           <div class="col-sm-4">
+                             <div class="form-check">
+                               <input class="form-check-input" type="radio" name="bdkv">
+                               <label class="form-check-label">
+                                 Khác
+                               </label>
+                             </div>
+                           </div>
+                         </div>
+                       </div>
+                      </div>
+
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Ghi rõ</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Ghi rõ biện pháp bảo đảm">
+                        </div>
+                      </div>
+
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Biện pháp bảo đảm khoản vay</span>
+                        </div>
+                        <div class="col-sm-8">
+                              <div class="form-check">
+                                <input class="form-check-input" type="radio" name="bdkv">
+                                <label class="form-check-label">
+                                  Nộp tiền mặt hoặc chuyển khoản
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input class="form-check-input" type="radio" name="bdkv">
+                                <label class="form-check-label">
+                                  Tự động trừ từ tài khoản ngân hàng
+                                </label>
+                              </div>
+                        </div>
+                      </div>
+
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Số tài khoản</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Số tài khoản">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Chủ tài khoản</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Tên chủ tài khoản">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Chi nhánh</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Chi nhánh">
+                        </div>
+                      </div>
+
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Nguồn trả nợ</span>
+                        </div>
+                        <div class="col-sm-8">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="ntn">
+                            <label class="form-check-label">
+                              Thu nhập từ sản xuất kinh doanh
+                            </label>
+                          </div>
+                          <div class="row">
+                            <div class="col-sm-4">
+                              <div class="form-check">
+                                <input class="form-check-input" type="radio" name="ntn">
+                                <label class="form-check-label">
+                                  Lương
+                                </label>
+                              </div>
+                            </div>
+                            <div class="col-sm-4">
+                              <div class="form-check">
+                                <input class="form-check-input" type="radio" name="ntn">
+                                <label class="form-check-label">
+                                  Khác
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+                    </div>
+                    <div style="clear: both;margin-bottom: 10px;"></div>
+                  </form>
+                </div>
+
+                <div [style]="is13FormGroup ? '': 'display: none;'">
+                  <div class="text-note-step0">
+                    <h4>NGƯỜI CÓ LIÊN QUAN</h4>
+                  </div>
+                  <form>
+                    <div class="row" style="margin-left: 10px;">
+                        <div class="form-check ">
+                          <input class="form-check-input" type="checkbox">
+                          <label class="form-check-label">
+                            Khách hàng cam kết không có người có liên quan có quan hệ tín dụng tại Ngân hàng.
+                          </label>
+                        </div>
+                        <div class="form-check ">
+                          <input class="form-check-input" type="checkbox">
+                          <label class="form-check-label">
+                            Khách hàng có người có liên quan có quan hệ tín dụng tại Ngân hàng.
+                          </label>
+                        </div>
+                    </div>
+                    <div class="text-note-step0">
+                      <h4>NGƯỜI CÓ LIÊN QUAN LÀ TỔ CHỨC</h4>
+                    </div>
+                    <div class="font-Roboto" style="margin-top: 20px;">
+                        <span>
+                         Công ty hoặc tổ chức tín dụng mà Khách hàng sở hữu từ 5% vốn điều lệ hoặc vốn cổ phần có quyền biểu quyết trở lên
+                        </span>
+                    </div>
+                    <div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Họ và tên</span>
+                        </div>
+                        <div class="col-sm-8 ">
+                          <input type="text" class="form-control"
+                                 placeholder="Họ và tên">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Số CMND/CCCD/Hộ chiếu</span>
+                        </div>
+                        <div class="col-sm-8 ">
+                          <input type="text" class="form-control"
+                                 placeholder="Mã số thuế/ĐKKD/Mã DN">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Địa chỉ nơi cư trú</span>
+                        </div>
+                        <div class="col-sm-8 ">
+                          <input type="text" class="form-control"
+                                 placeholder="Địa chỉ trụ sở chính">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Số CIF tại Ngân hàng</span>
+                        </div>
+                        <div class="col-sm-8 ">
+                          <input type="text" class="form-control"
+                                 placeholder="Số CIF tại ngân hàng">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Tên chi nhánh có quan hệ tín dụng</span>
+                        </div>
+                        <div class="col-sm-8 ">
+                          <input type="text" class="form-control"
+                                 placeholder="Chi nhánh">
+                        </div>
+                      </div>
+
+                      <div class="font-Roboto" style="margin-top: 20px;">
+                        <span>
+                         Công ty con mà Khách hàng là người quản lý, thành viên Ban kiểm soát của công ty mẹ hoặc tổ chức tín dụng mẹ
+                        </span>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Họ và tên</span>
+                        </div>
+                        <div class="col-sm-8 ">
+                          <input type="text" class="form-control"
+                                 placeholder="Họ và tên">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Số CMND/CCCD/Hộ chiếu</span>
+                        </div>
+                        <div class="col-sm-8 ">
+                          <input type="text" class="form-control"
+                                 placeholder="Mã số thuế/ĐKKD/Mã DN">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Địa chỉ nơi cư trú</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Địa chỉ trụ sở chính">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Số CIF tại Ngân hàng</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Số CIF tại ngân hàng">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Tên chi nhánh có quan hệ tín dụng</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Chi nhánh">
+                        </div>
+                      </div>
+
+
+                      <div class="font-Roboto" style="margin-top: 20px;">
+                        <span>
+                         Công ty con mà Khách hàng có thẩm quyền bổ nhiệm người quản lý11, thành viên Ban kiểm soát của công ty mẹ hoặc tổ chức tín dụng mẹ
+                        </span>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Họ và tên</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Họ và tên">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Số CMND/CCCD/Hộ chiếu</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Mã số thuế/ĐKKD/Mã DN">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Địa chỉ nơi cư trú</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Địa chỉ trụ sở chính">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Số CIF tại Ngân hàng</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Số CIF tại ngân hàng">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Tên chi nhánh có quan hệ tín dụng</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Chi nhánh">
+                        </div>
+                      </div>
+
+                      <div class="font-Roboto" style="margin-top: 20px;">
+                        <span>
+                        Công ty hoặc tổ chức tín dụng mà Khách hàng là người quản lý, thành viên Ban kiểm soát
+                        </span>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Họ và tên</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Họ và tên">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Số CMND/CCCD/Hộ chiếu</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Mã số thuế/ĐKKD/Mã DN">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Địa chỉ nơi cư trú</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Địa chỉ trụ sở chính">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Số CIF tại Ngân hàng</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Số CIF tại ngân hàng">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Tên chi nhánh có quan hệ tín dụng</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Chi nhánh">
+                        </div>
+                      </div>
+
+                      <div class="font-Roboto" style="margin-top: 20px;">
+                        <span>
+                       Công ty hoặc tổ chức tín dụng mà Khách hàng có mối quan hệ gia đình với người quản lý, thành viên Ban kiểm soát, thành viên góp vốn hoặc cổ đông sở hữu từ 5% vốn điều
+                          lệ hoặc vốn cổ phần có quyền biểu quyết trở lên của công ty hoặc tổ chức tín dụng đó
+                        </span>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Họ và tên</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Họ và tên">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Số CMND/CCCD/Hộ chiếu</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Mã số thuế/ĐKKD/Mã DN">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Địa chỉ nơi cư trú</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Địa chỉ trụ sở chính">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Số CIF tại Ngân hàng</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Số CIF tại ngân hàng">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Tên chi nhánh có quan hệ tín dụng</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Chi nhánh">
+                        </div>
+                      </div>
+
+                      <div class="font-Roboto" style="margin-top: 20px;">
+                        <span>
+                        Tổ chức ủy quyền đại diện phần vốn góp, cổ phần cho Khách hàng
+                        </span>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Họ và tên</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Họ và tên">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Số CMND/CCCD/Hộ chiếu</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Mã số thuế/ĐKKD/Mã DN">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Địa chỉ nơi cư trú</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Địa chỉ trụ sở chính">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Số CIF tại Ngân hàng</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Số CIF tại ngân hàng">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Tên chi nhánh có quan hệ tín dụng</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Chi nhánh">
+                        </div>
+                      </div>
+
+                    </div>
+                    <div style="clear: both;margin-bottom: 10px;"></div>
+                  </form>
+                </div>
+                <!--<div *ngIf="is12FormGroup">-->
+                <div [style]="is14FormGroup ? '': 'display: none;'">
+                  <div class="text-note-step0">
+                    <h4>NGƯỜI CÓ LIÊN QUAN LÀ CÁ NHÂN</h4>
+                  </div>
+                  <form>
+                    <div class="font-Roboto">
+                      <span>
+                        Cá nhân có mối quan hệ gia đình với Khách hàng
+                      </span>
+                    </div>
+                    <div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Họ và tên</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Họ và tên">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Số CMND/CCCD/Hộ chiếu</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Mã số thuế/ĐKKD/Mã DN">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Địa chỉ nơi cư trú</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Địa chỉ trụ sở chính">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Số CIF tại Ngân hàng</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Số CIF tại ngân hàng">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Tên chi nhánh có quan hệ tín dụng</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Chi nhánh">
+                        </div>
+                      </div>
+
+                      <div class="font-Roboto" style="margin-top: 20px;">
+                        <span>
+                          Cá nhân cùng với Khách hàng được một tổ chức ủy quyền đại diện phần vốn góp, cổ phần tại một tổ chức khác
+                        </span>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Họ và tên</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Họ và tên">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Số CMND/CCCD/Hộ chiếu</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Mã số thuế/ĐKKD/Mã DN">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Địa chỉ nơi cư trú</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Địa chỉ trụ sở chính">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Số CIF tại Ngân hàng</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Số CIF tại ngân hàng">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Tên chi nhánh có quan hệ tín dụng</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Chi nhánh">
+                        </div>
+                      </div>
+
+
+                      <div class="font-Roboto" style="margin-top: 20px;">
+                        <span>
+                          Cá nhân ủy quyền đại diện phần vốn góp, cổ phần cho Khách hàng
+                        </span>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Họ và tên</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Họ và tên">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Số CMND/CCCD/Hộ chiếu</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Mã số thuế/ĐKKD/Mã DN">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Địa chỉ nơi cư trú</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Địa chỉ trụ sở chính">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Số CIF tại Ngân hàng</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Số CIF tại ngân hàng">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Tên chi nhánh có quan hệ tín dụng</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Chi nhánh">
+                        </div>
+                      </div>
+
+                      <div class="font-Roboto" style="margin-top: 20px;">
+                        <span>
+                        Cá nhân được Khách hàng ủy quyền đại diện phần vốn góp, cổ phần
+                        </span>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Họ và tên</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Họ và tên">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Số CMND/CCCD/Hộ chiếu</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Mã số thuế/ĐKKD/Mã DN">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Địa chỉ nơi cư trú</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Địa chỉ trụ sở chính">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Số CIF tại Ngân hàng</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Số CIF tại ngân hàng">
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px" class="row">
+                        <div class="col-sm-4 ">
+                          <span>Tên chi nhánh có quan hệ tín dụng</span>
+                        </div>
+                        <div class="col-sm-8 font-Roboto">
+                          <input type="text" class="form-control"
+                                 placeholder="Chi nhánh">
+                        </div>
+                      </div>
+
+                    </div>
+                    <div style="clear: both;margin-bottom: 10px;"></div>
+                  </form>
+                </div>
+
+                <!--is15FormGroup-->
+                <div *ngIf="is15FormGroup">
+                  <div class="text-note-step0">
+                    <h4>CAM ĐOAN VÀ CAM KẾT</h4>
+                  </div>
+                  <form>
+                    <div>
+                      <div style="margin-top: 20px">
+                        <div>
+                          <span>Với mọi trách nhiệm thuộc về mình, Khách hàng cam đoan và cam kết với Ngân hàng như sau:
+                          </span>
+                        </div>
+                        <div style="margin-top: 20px">
+                          <ol>
+                            <li>
+                              Các thông tin, tài liệu cung cấp cho Ngân hàng là chính xác, phản ánh trung thực và hợp lý tình hình của Khách hàng; cung cấp
+                              kịp thời, đầy đủ cho Ngân hàng nếu thay đổi thông tin trong quá trình vay vốn tại Ngân hàng.
+                            </li>
+                            <li>
+                              Việc ký kết, thực hiện các thủ tục vay vốn tại Ngân hàng không vi phạm quy định của pháp luật cũng như các cam kết, thỏa thuận giữa Khách hàng và bất kỳ chủ thể nào khác.
+                            </li>
+                            <li>
+                              Thực hiện kịp thời, đầy đủ các quy định của Ngân hàng và quy định của pháp luật trong quá trình vay vốn tại Ngân hàng.
+                            </li>
+                            <li>
+                              Sử dụng vốn vay đúng mục đích theo cam kết, thỏa thuận với Ngân hàng; trả đầy đủ, đúng hạn nợ gốc, lãi, phí và nghĩa vụ tài chính khác (nếu có) theo cam kết, thỏa thuận với Ngân hàng.
+                            </li>
+                            <li>
+                              Cam kết về việc không còn dư nợ vay không bảo đảm bằng tài sản tại Ngân hàng hoặc/và các tổ chức tín dụng khác tại thời điểm khách hàng đề nghị vay vốn theo sản phẩm tại Ngân hàng.
+                            </li>
+                            <li>
+                              Biện pháp bảo đảm và/hoặc tài sản bảo đảm đáp ứng đầy đủ các điều kiện theo quy định của pháp luật; thực hiện thủ tục công chứng, chứng thực, xác nhận và đăng ký giao dịch bảo đảm phù hợp với quy định của pháp luật và/hoặc theo yêu cầu của Ngân hàng; phối hợp, tạo điều kiện kịp thời, đầy đủ khi Ngân hàng xử lý biện pháp bảo đảm và/hoặc tài sản bảo đảm theo thỏa thuận của các bên và quy định của pháp luật.
+
+                            </li>
+                            <li>
+                              Đã đọc kỹ, hiểu rõ và hoàn toàn tự nguyện tham gia ký kết, thực hiện thủ tục vay vốn tại Ngân hàng.
+                            </li>
+                          </ol>
+                        </div>
+                      </div>
+                      <div style="margin-top: 30px; margin-left: 30px;">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" value="" id="Check1">
+                          <label class="form-check-label" for="Check1">
+                            Tôi đã đọc và đồng ý với các cam đoan và cam kết nêu trên.
+                          </label>
+                        </div>
+                      </div>
+
+
+                    </div>
+                    <div style="clear: both;margin-bottom: 10px;"></div>
+                  </form>
+                </div>
+
+                <!--is16FormGroup-->
+                <div *ngIf="is16FormGroup">
+                  <div class="text-note-step0">
+                    <h4>CHỮ KÝ</h4>
+                  </div>
+                  <div class="row" style="text-align: center">
+                    <div class="col-sm-12">
+                      <div style="background-color: #D9D9D9;">
+                        <p>Quý khách vui lòng ký và ghi rõ họ tên.</p>
+
+                        <signature-pad #sign1 [options]="signaturePadOptions" (onBeginEvent)="drawStart()"
+                                       (onEndEvent)="drawComplete(sign1)">
+                        </signature-pad>
+                      </div>
+                      <div style="margin: 10px 10px;">
+                        <button type="button" class="btn btn-warning" (click)="clearSignature(sign1)">Ký lại</button>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <!---->
+                <div *ngIf="isFinishedFormGroup">
+                  <div class="text-note-step0">
+                    <form>
+                      <div style=" margin-bottom: 10px;text-align: center">
+                        <div style="margin-top: 40px">
+                         <span>
+                            Cảm ơn Quý khách đã đăng ký mở thẻ tín dụng tại Ngân hàng. Ngân hàng sẽ liên hệ với Quý khách trong thời gian sớm nhất.
+                         </span>
+                        </div>
+                        <div style="margin-top: 20px">
+                        <span>
+                        Mọi thắc mắc xin vui lòng tham khảo website chính thức hoặc liên hệ Hotline của Ngân hàng  để được giải đáp.
+                        </span>
+                        </div>
+                        <div style="margin-top: 20px">
+                        <span>
+                         Trân trọng!
+                        </span>
+                          <p>
+                            <button type="button" class="btn btn-warning" (click)="reloadPage()">Quay về trang chủ
+                            </button>
+                          </p>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+            <div class="row">
+              <div class="footer-button rounded" style="width: 100%;">
+                <button *ngIf="showBackStep" type="button" class="btn btn-secondary btn-back"
+                        style="background-color: #3F2763; border-color: #3F2763;" id="backStep"
+                        (click)="backStep()">Quay lại
+                </button>
+                <button *ngIf="showStepNext" type="button" class="btn btn-warning btn-next"
+                        id="stepNext" (click)="stepNext()" [disabled]="!cValid(currIdxStep)">
+                  Tiếp tục
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-sm-2"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+

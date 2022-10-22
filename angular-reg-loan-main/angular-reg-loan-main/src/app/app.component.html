@@ -1,0 +1,939 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-header">
+  <div class="container">
+    <div class="row" style="width: 100%">
+      <div class="col-sm-8 hd1">
+        <a class="navbar-brand" href="javascript:void(0);" style="margin-left: 20px; color: #FFF;" (click)="reloadPage()"> {{ title }} </a>
+      </div>
+      <div class="col-sm-4 hd1">
+        <div class="company-email"><i class="fa fa-phone-square" aria-hidden="true"
+            style="color: #FFF;margin-left: 9px; "></i> 1900000000 </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div id="step0" style="height: 100%" *ngIf="is0FormGroup">
+  <div class="LandingPage">
+    <div class="container">
+      <form id="submitForm" action="/dang-ky-tai-khoan/step2" method="post">
+        <input type="hidden" name="token" value="">
+        <div class="row" style="margin-top: 4%; width: 100%; margin-left: 0px;" id="openAccountRowStep0">
+          <div class="col-sm-3 d-none d-lg-block" style="display: contents">
+            <div style="margin-right: -15px">
+              <img src="./assets/img/open-account.png">
+            </div>
+          </div>
+          <div class="col-sm-9 col-lg-9 col-xl-9 contentright-step0 rounded" style="width: 100%">
+            <div style="margin-top: 35px">
+              <h4>Mở tài khoản tại quầy</h4>
+            </div>
+            <div class="text-note-step0">Chào mừng Quý khách đăng ký mở tài khoản trực tuyến. Để bắt đầu đăng ký, vui
+              lòng chuẩn bị:</div>
+            <div class="text-note-step0">1. CMND hoặc CCCD còn hiệu lực theo quy định.</div>
+            <div class="text-note-step0">
+
+              2. Máy tính hoặc Điện thoại có Camera.
+              <a href="javascript:void(0)" (click)="CheckCamera()" class="text-primary">Nhấn để kiểm tra.</a>
+              <video id="videoTakePhotoFront" width="100%" style="object-fit: cover; margin-top: -85px;display: none;"
+                playsinline=""></video>
+            </div>
+            <div class="text-note-step0">3. Điện thoại di động để nhận OTP.</div>
+            <div class="text-note-step0">
+              <i>Trình duyệt khuyến nghị: Chrome (Window/Android/MacOS version 10.0.0 trở lên); Safari (iPhone/iPad
+                version 12.4.1 trở lên) - Vui lòng mở link trực tiếp tại các trình duyệt khuyến nghị nêu trên</i><br>
+            </div>
+            <div class="text-note-step0" style="margin-bottom: 20px;">
+              <button type="button" (click)="startReg()" class="btn btn-warning content3-step0" style="font-size: 16px;">Bắt đầu</button>
+            </div>
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="step" style="height: 100%" *ngIf="!is0FormGroup">
+  <div class="LandingPage" id="OpenAccountPersonalInfor">
+    <div class="container">
+
+      <div class="row" style="margin-bottom: 20px;">
+        <div class="col-sm-12">
+          <div class="d-block">
+            <div>
+              <i class="fa fa-user icon-header" aria-hidden="true" style="color: #3F2763 "></i>
+              <img src="./assets/img/circle-open-account.png">
+              <span class="font-Roboto font-size16" style="color: #766C60"> {{ titleStep }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-2"></div>
+      </div>
+
+      <div class="row" style="margin-left: 7px; margin-right: 8px;">
+        <div class="col-sm-12" style="margin-bottom: 2%">
+          <div>
+            <div class="row">
+              <div class="col-sm-1 col-lg-1 d-block"></div>
+
+              <div class="col-sm-12 bg-white rounded">
+                <!-- is1FormGroup -->
+                <div *ngIf="is1FormGroup">
+                  <form>
+                    <div>
+                      <div style="margin-top: 20px">
+                        <div class="font-Roboto">
+                          <span>Họ và tên </span>
+                          <span class="color-red">(*)</span>
+                        </div>
+                        <div style="margin-top: 16px">
+                          <input maxlength="12" id="hoten" name="hoten" type="text" class="form-control" placeholder="Họ và tên" required>
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px">
+                        <div class="font-Roboto">
+                          <span>Số điện thoại </span>
+                          <span class="color-red">(*)</span>
+                        </div>
+                        <div style="margin-top: 16px">
+                          <input maxlength="12" id="mobile" name="mobile" type="text" class="form-control" placeholder="Số điện thoại" required>
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px">
+                        <div class="font-Roboto">
+                          <span>Email </span>
+                          <span class="color-red">(*)</span>
+                        </div>
+                        <div style="margin-top: 16px">
+                          <input id="email" name="email" type="text" class="form-control" placeholder="Email" required>
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px">
+                        <div class="font-Roboto">
+                          <span>Mã kiểm tra </span>
+                          <span class="color-red">(*)</span>
+                        </div>
+                        <div style="margin-top: 16px">
+                          <input id="makt" name="makt" type="text" class="form-control" placeholder="Mã kiểm tra" required>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div style="clear: both;margin-bottom: 10px;"></div>
+                  </form>
+                </div>
+
+                <!-- is2FormGroup -->
+                <div *ngIf="is2FormGroup">
+                  <div class="font-Roboto font-size16" style="margin-top: 26px; text-align: center">
+                    Xác thực OTP
+                  </div>
+                  <div class="font-Roboto-normal font-size14" style="margin-top: 12px; text-align: center">
+                    <div>Vui lòng nhập mã OTP gồm 6 chữ số đã gửi đến số điện thoại</div>
+                    <div style="margin-top: 8px;" id="openAuthOTP_phone">*******$phone </div>
+                    <div style="margin-top: 8px;">Thời gian hết hạn: <span id='exp' style=" color: red;font-weight: bold;">
+                      </span> giây</div>
+                  </div>
+                  <div style="margin-top: 24px;text-align:center;">
+                    <form>
+                      <ng-otp-input [config]="conf_otp_input" (onInputChange)="onOtpChange($event)"></ng-otp-input>
+                      <input hidden [(ngModel)]="otpCorrect" name="otp" required>
+                    </form>
+                  </div>
+                  <div style="margin-top: 35px; text-align: center; margin-bottom: 20px;">
+                    <button class="font-Roboto btn btn-dark" id="resendOtp">Gửi lại OTP</button>
+                  </div>
+                </div>
+
+                <!-- is3FormGroup -->
+                <div *ngIf="is3FormGroup">
+                  <div style="margin-top: 24px">
+                    <form>
+                      <div class="font-Roboto">
+                        <span>Chọn Giấy Tờ Tùy Thân</span>
+                        <span class="color-red">(*)</span>
+                      </div>
+
+                      <br />
+                      <p class="cus-text">Quý khách vui lòng lựa chọn giấy tờ tùy thân. Ưu tiên cung cấp CMND / CCCD.</p>
+
+                      <div style="margin-top: 16px">
+                        <div class="custom-control custom-radio">
+                          <input type="radio" class="custom-control-input" id="id_cccd" name="idGTTT" value="cccd" checked>
+                          <label class="custom-control-label" for="id_cccd">CMND / CCCD</label>
+                        </div>
+
+                        <div class="custom-control custom-radio">
+                          <input type="radio" class="custom-control-input" id="id_pp" name="idGTTT" value="pp">
+                          <label class="custom-control-label" for="id_pp">Hộ Chiếu</label>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+
+                <!-- is4FormGroup -->
+                <div *ngIf="is4FormGroup">
+                  <form>
+                    <div>
+                      <div class="font-Roboto margin-top: 12px">
+                        <span>Chụp/ Tải ảnh mặt trước và sau giấy tờ của quý khách</span>
+                      </div>
+
+                      <p>
+                        * Quý khách vui lòng cung cấp hình chụp CMND/CCCD hoặc Hộ Chiếu còn hiệu lực, không bị mờ, bóng hoặc mất góc. Thông tin hiển thị đầy
+                        đủ và rõ ràng. Các định dạng file được chấp nhận: jpg, jpeg, png. Kích thước tệp tối đa: 10 MB.
+                      </p>
+
+                      <div style="margin-top: 24px">
+                        <div class="font-Roboto">
+                          <span>CMND/CCCD</span>
+                          <span class="color-red">(*)</span>
+                        </div>
+                        <div style="margin-top: 16px">
+                          <div class="cus-webcam">
+                            <app-camera typecam="gttt" (getPicture)="handleImage($event, 'img_gttt')" (btnGTTTEvent)="btnGTTTItem($event)"></app-camera>
+                            <br />
+                            <div class="webcam-image">
+                              <img *ngIf="webcamImageFront" [src]="webcamImageFront.imageAsDataUrl" style="width: 200px;" />
+                              &nbsp;&nbsp;
+                              <img *ngIf="webcamImageBack" [src]="webcamImageBack.imageAsDataUrl" style="width: 200px;" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <ng-template #noCameraExist>
+                      Thiết bị máy ảnh không khả dụng.
+                    </ng-template>
+
+                    <div style="clear: both;margin-bottom: 10px;"></div>
+                  </form>
+                </div>
+
+                <!-- is5FormGroup -->
+                <div *ngIf="is5FormGroup">
+                  <form>
+                    <div>
+                      <div class="font-Roboto margin-top: 12px">
+                        <span>Vui lòng xem video hướng dẫn và tiếp tục để thực hiện xác thực khuôn mặt</span>
+                      </div>
+
+                      <div style="margin-top: 24px">
+                        <div style="margin-top: 16px">
+
+                        </div>
+                      </div>
+                    </div>
+
+                    <div style="clear: both;margin-bottom: 10px;"></div>
+                  </form>
+                </div>
+
+                <!-- is6FormGroup -->
+                <div *ngIf="is6FormGroup">
+                  <form>
+                    <div>
+                      <div class="font-Roboto margin-top: 12px">
+                        <span>Xác thực khuôn mặt</span>
+                      </div>
+
+                      <p>
+                        * Vui lòng quay video không quá sát camera và cử động gương mặt tự nhiên trong vài giây. Trong trường hợp sử dụng
+                        Iphone/IPad, quý khách vui lòng cài đặt theo hướng dẫn để quay video Cài đặt > Safari > Nâng cao > Experimental Features
+                        > Media Recorder > True. (version 12.4.1 trở lên)
+                      </p>
+
+                      <div style="margin-top: 24px">
+                        <div style="margin-top: 16px">
+                          <div class="cus-webcam" *ngIf="isImgFace">
+                            <app-camera typecam="face" [showbtn]="false" (getPicture)="handleImage($event, 'img_face')"></app-camera>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <ng-template #noCameraExist>
+                      Thiết bị máy ảnh không khả dụng.
+                    </ng-template>
+
+                    <div style="clear: both;margin-bottom: 10px;"></div>
+                  </form>
+                </div>
+
+                <!-- is7FormGroup -->
+                <div *ngIf="is7FormGroup">
+                  <form>
+                    <div>
+                      <div style="margin-top: 20px">
+                        <div class="font-Roboto">
+                          <span>Lựa chọn sản phẩm vay </span>
+                          <span class="color-red">(*)</span>
+                        </div>
+                        <div style="margin-top: 20px">
+                          <select class="form-control">
+                            <option>Vay tiêu dùng</option>
+                            <option>Vay mua ô tô</option>
+                            <option>Vay mua bất động sản</option>
+                            <option>Vay sản xuất kinh doanh</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px">
+                        <div class="font-Roboto">
+                          <span>Lựa chọn chi nhánh </span>
+                          <span class="color-red">(*)</span>
+                        </div>
+                        <div style="margin-top: 20px">
+                          <select class="form-control">
+                            <option>Hà Nội</option>
+                            <option>HCM</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px">
+                        <div class="font-Roboto">
+                          <span>Thông tin giới thiệu (nếu có) </span>
+                        </div>
+                        <div style="margin-top: 20px">
+                          <input type="text" class="form-control" placeholder="Số điện thoại" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div style="clear: both;margin-bottom: 10px;"></div>
+                  </form>
+                </div>
+
+                <!-- is8FormGroup -->
+                <div *ngIf="is8FormGroup">
+                  <form>
+                    <div>
+                      <div style="margin-top: 20px">
+                        <div class="font-Roboto">
+                          <span>Quý khách vui lòng chuẩn bị tải lên bản gốc các giấy tờ được yêu cầu sau đây </span>
+                        </div>
+                      </div>
+                      <div class="font-Roboto" style="margin-top: 20px">
+                        <span>Hồ sơ nhân thân</span>
+                      </div>
+                      <div class="font-Roboto" style="margin-top: 20px">
+                        <span>Hồ sơ chứng minh mục đích vay </span>
+                      </div>
+                      <div class="font-Roboto" style="margin-top: 20px">
+                        <span>Hồ sơ chứng minh thu nhập</span>
+                      </div>
+                      <div class="font-Roboto" style="margin-top: 20px">
+                        <span>Hồ sơ tài sản đảm bảo </span>
+                      </div>
+                    </div>
+
+                    <div style="clear: both;margin-bottom: 10px;"></div>
+                  </form>
+                </div>
+
+                <!-- is9FormGroup -->
+                <div *ngIf="is9FormGroup">
+                  <form>
+                    <div class="scrollClass">
+                      <div style="margin-top: 20px">
+                        <div class="font-Roboto">
+                          <span>THÔNG TIN CHUNG </span>
+                        </div>
+                      </div>
+
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Họ và tên
+                        </div>
+                        <div class="col-sm-4">
+                          <input class="form-control" type="text" />
+                        </div>
+                      </div>
+
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Ngày sinh
+                        </div>
+                        <div class="col-sm-4">
+                          <input class="form-control" type="text" />
+                        </div>
+                      </div>
+
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Giới tính
+                        </div>
+                        <div class="col-sm-4">
+                          <input class="form-control" type="text" />
+                        </div>
+                      </div>
+
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Quốc tịch
+                        </div>
+                        <div class="col-sm-4">
+                          <input class="form-control" type="text" />
+                        </div>
+                      </div>
+
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Số CMND / CCCD / Hộ chiếu
+                        </div>
+                        <div class="col-sm-4">
+                          <input class="form-control" type="text" />
+                        </div>
+                      </div>
+
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Nơi cấp
+                        </div>
+                        <div class="col-sm-4">
+                          <input class="form-control" type="text" />
+                        </div>
+                      </div>
+
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Địa chỉ cư trú
+                        </div>
+                        <div class="col-sm-4">
+                          <input class="form-control" type="text" />
+                        </div>
+                      </div>
+
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Nơi ở hiện tại
+                        </div>
+                        <div class="col-sm-4">
+                          <input class="form-control" type="text" />
+                        </div>
+                      </div>
+
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Thời gian ở địa chỉ hiện tại
+                        </div>
+                        <div class="col-sm-4">
+                          <input class="form-control" type="text" />
+                        </div>
+                      </div>
+
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Điện thoại nơi cư trú
+                        </div>
+                        <div class="col-sm-4">
+                          <input class="form-control" type="text" />
+                        </div>
+                      </div>
+
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Điện thoại nơi ở hiện tại
+                        </div>
+                        <div class="col-sm-4">
+                          <input class="form-control" type="text" />
+                        </div>
+                      </div>
+
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Điện thoại di động
+                        </div>
+                        <div class="col-sm-4">
+                          <input class="form-control" type="text" />
+                        </div>
+                      </div>
+
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Email
+                        </div>
+                        <div class="col-sm-4">
+                          <input class="form-control" type="text" />
+                        </div>
+                      </div>
+
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Trình độ học vấn
+                        </div>
+                        <div class="col-sm-2">
+                          <input type="radio" name="trinhdohocvan" /> Đại học <br>
+                          <input type="radio" name="trinhdohocvan" /> Trung cấp <br>
+                          <input type="radio" name="trinhdohocvan" /> Cao đẳng <br>
+                        </div>
+                        <div class="col-sm-2">
+                          <input type="radio" name="trinhdohocvan" /> Trên đại học <br>
+                          <input type="radio" name="trinhdohocvan" /> Dưới trung cấp <br>
+                          <input type="radio" name="trinhdohocvan" /> Khác <br>
+                        </div>
+                      </div>
+
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Lý lịch tư pháp
+                        </div>
+                        <div class="col-sm-4">
+                          <input type="radio" name="lylichtuphap" /> Tốt, chưa có tiền án, tiền sự <br>
+                          <input type="radio" name="lylichtuphap" /> Có tiền án, tiền sự hoặc là đối tượng nghi vấn hoặc bị truy tố pháp luật <br>
+                        </div>
+                      </div>
+
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Loại nhà ở
+                        </div>
+                        <div class="col-sm-2">
+                          <input type="radio" name="loainha" /> Biệt thự <br>
+                          <input type="radio" name="loainha" /> Nhà liền kề <br>
+                        </div>
+                        <div class="col-sm-2">
+                          <input type="radio" name="loainha" /> Nhà đất <br>
+                          <input type="radio" name="loainha" /> Chung cư <br>
+                        </div>
+                      </div>
+
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Hình thức sở hữu nhà ở
+                        </div>
+                        <div class="col-sm-4">
+                          <input type="radio" name="hinhthucsohuunha" /> Ở chung nhà bố mẹ (trừ trường hợp bố mẹ cũng đi thuê nhà) <br>
+                          <input type="radio" name="hinhthucsohuunha" /> Nhà mua trả chậm, trả dần <br>
+                          <input type="radio" name="hinhthucsohuunha" /> Nhà riêng <br>
+                          <input type="radio" name="hinhthucsohuunha" /> Nhà đi thuê <br>
+                          <input type="radio" name="hinhthucsohuunha" /> Nhà thuê mua <br>
+                          <input type="radio" name="hinhthucsohuunha" /> Khác <br>
+                        </div>
+                      </div>
+
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Tình trạng hôn nhân
+                        </div>
+                        <div class="col-sm-2">
+                          <input type="radio" name="tinhtranghonnhan" /> Độc thân <br>
+                          <input type="radio" name="tinhtranghonnhan" /> Ly thân <br>
+                        </div>
+                        <div class="col-sm-2">
+                          <input type="radio" name="tinhtranghonnhan" /> Kết hôn <br>
+                          <input type="radio" name="tinhtranghonnhan" /> Ly hôn <br>
+                        </div>
+                        <div class="col-sm-2">
+                          <input type="radio" name="tinhtranghonnhan" /> Góa <br>
+                          <input type="radio" name="tinhtranghonnhan" /> Khác <br>
+                        </div>
+                      </div>
+
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Số người phụ thuộc kinh tế
+                        </div>
+                        <div class="col-sm-4">
+                          <input class="form-control" type="text" />
+                        </div>
+                      </div>
+
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Thời gian còn ở lại Việt Nam
+                        </div>
+                        <div class="col-sm-4">
+                          <input class="form-control" type="text" />
+                        </div>
+                      </div>
+
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Tên mẹ hoặc trường tiểu học
+                        </div>
+                        <div class="col-sm-4">
+                          <input class="form-control" type="text" />
+                        </div>
+                      </div>
+
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Tình trạng việc làm
+                        </div>
+                        <div class="col-sm-2">
+                          <input type="radio" name="tinhtrangvieclam" /> Toàn thời gian <br>
+                          <input type="radio" name="tinhtrangvieclam" /> Tự kinh doanh <br>
+                          <input type="radio" name="tinhtrangvieclam" /> Sinh viên <br>
+                          <input type="radio" name="tinhtrangvieclam" /> Khác (ghi rõ) <br>
+                          <input type="text" name="text_tinhtrangvieclam" class="form-control" />
+                        </div>
+                        <div class="col-sm-2">
+                          <input type="radio" name="tinhtrangvieclam" /> Bán thời gian <br>
+                          <input type="radio" name="tinhtrangvieclam" /> Hưu trí <br>
+                          <input type="radio" name="tinhtrangvieclam" /> Nội trợ <br>
+                        </div>
+                      </div>
+
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Tên đơn vị công tác, quản lý
+                        </div>
+                        <div class="col-sm-4">
+                          <input type="text" class="form-control" />
+                        </div>
+                      </div>
+
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Nghề nghiệp
+                        </div>
+                        <div class="col-sm-4">
+                          <input type="text" class="form-control" />
+                        </div>
+                      </div>
+
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Vị trí công tác
+                        </div>
+                        <div class="col-sm-4">
+                          <input type="radio" name="vitricongtac" /> Cán bộ nhân viên (ghi rõ chức danh) <br>
+                          <input type="radio" name="vitricongtac" /> Cán bộ quản lý điều hành (ghi rõ vị trí, chức vụ) <br>
+                        </div>
+                      </div>
+
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Ghi rõ vị trí công tác
+                        </div>
+                        <div class="col-sm-4">
+                          <input type="text" class="form-control" />
+                        </div>
+                      </div>
+
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Nơi công tác
+                        </div>
+                        <div class="col-sm-4">
+                          <input type="text" class="form-control" />
+                        </div>
+                      </div>
+
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Điện thoại nơi công tác
+                        </div>
+                        <div class="col-sm-4">
+                          <input type="text" class="form-control" />
+                        </div>
+                      </div>
+
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Hình thức HĐLĐ
+                        </div>
+                        <div class="col-sm-3">
+                          <input type="radio" name="hdld" /> Không xác định thời hạn <br>
+                          <input type="radio" name="hdld" /> Trên 3 năm <br>
+                          <input type="radio" name="hdld" /> Dưới 1 năm <br>
+                        </div>
+                        <div class="col-sm-2">
+                          <input type="radio" name="hdld" /> 1 - 3 năm <br>
+                          <input type="radio" name="hdld" /> Khác <br>
+                        </div>
+                      </div>
+
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Thời gian làm việc gần nhất
+                        </div>
+                        <div class="col-sm-4">
+                          <input type="text" class="form-control" />
+                        </div>
+                      </div>
+
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Thời gian làm việc trước đó
+                        </div>
+                        <div class="col-sm-4">
+                          <input type="text" class="form-control" />
+                        </div>
+                      </div>
+
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Thời gian hết hạn HĐLĐ
+                        </div>
+                        <div class="col-sm-4">
+                          <input type="text" class="form-control" />
+                        </div>
+                      </div>
+
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Kinh nghiệm công tác
+                        </div>
+                        <div class="col-sm-4">
+                          <input type="text" class="form-control" />
+                        </div>
+                      </div>
+
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Mã số thuế cá nhân
+                        </div>
+                        <div class="col-sm-4">
+                          <input type="text" class="form-control" />
+                        </div>
+                      </div>
+
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Loại hình đơn vị công tác
+                        </div>
+                        <div class="col-sm-6">
+                          <input type="radio" name="loaihinhdonvicongtac" /> Cơ quan Đảng, cơ quan Nhà nước (Bộ, Ban, Ngành...) <br>
+                          <input type="radio" name="loaihinhdonvicongtac" /> Tổ chức chính trị, xã hội, nghề nghiệp <br>
+                          <input type="radio" name="loaihinhdonvicongtac" /> Đơn vị lực lượng vũ trang <br>
+                          <input type="radio" name="loaihinhdonvicongtac" /> Đơn vị sự nghiệp công lập, cơ sở kinh doanh trực thuộc Cơ quan Đảng, cơ quan Nhà nước <br>
+                          <input type="radio" name="loaihinhdonvicongtac" /> Tập đoàn kinh tế Nhà nước, Tổng công ty 90/91, Tổng công ty Nhà nước đặc biệt <br>
+                          <input type="radio" name="loaihinhdonvicongtac" /> Doanh nghiệp Nhà nước <br>
+                          <input type="radio" name="loaihinhdonvicongtac" /> Cơ quan thuộc lĩnh vực tài chính <br>
+                          <input type="radio" name="loaihinhdonvicongtac" /> Doanh nghiệp có vốn đầu tư nước ngoài <br>
+                          <input type="radio" name="loaihinhdonvicongtac" /> Tập đoàn, Tổng công ty thuộc khu vực tư nhân, Đơn vị sự nghiệp ngoài công lập <br>
+                          <input type="radio" name="loaihinhdonvicongtac" /> Công ty TNHH tư nhân, doanh nghiệp cổ phần, công ty hợp danh <br>
+                          <input type="radio" name="loaihinhdonvicongtac" /> Doanh nghiệp tư nhân <br>
+                          <input type="radio" name="loaihinhdonvicongtac" /> Cơ quan, tổ chức hành chính nước ngoài tại Việt Nam (Đại sứ quán, Tổ chức phi chính phủ, Văn phòng đại diện) <br>
+                          <input type="radio" name="loaihinhdonvicongtac" /> Hộ kinh doanh cá thể, tiểu thương và cá nhân khác <br>
+                          <input type="radio" name="loaihinhdonvicongtac" /> Khác (ghi rõ) <br>
+                          <input type="text" name="text_loaihinhdonvicongtac" class="form-control" />
+                        </div>
+                      </div>
+
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Lĩnh vực nghề nghiệp hiện tại
+                        </div>
+                        <div class="col-sm-4">
+                          <input type="radio" name="linhvucnghenghiepht" /> Tài chính, ngân hàng, bảo hiểm <br>
+                          <input type="radio" name="linhvucnghenghiepht" /> Truyền thông, báo chí <br>
+                          <input type="radio" name="linhvucnghenghiepht" /> Đoàn thể, hành chính <br>
+                          <input type="radio" name="linhvucnghenghiepht" /> An ninh, quốc phòng <br>
+                          <input type="radio" name="linhvucnghenghiepht" /> Thương mại, dịch vụ <br>
+                          <input type="radio" name="linhvucnghenghiepht" /> Văn hóa, nghệ thuậtc <br>
+                          <input type="radio" name="linhvucnghenghiepht" /> Nông, lâm, thủy sản <br>
+                        </div>
+                        <div class="col-sm-4">
+                          <input type="radio" name="linhvucnghenghiepht" /> Bất động sản <br>
+                          <input type="radio" name="linhvucnghenghiepht" /> Công nghiệp <br>
+                          <input type="radio" name="linhvucnghenghiepht" /> Viễn thông <br>
+                          <input type="radio" name="linhvucnghenghiepht" /> Xây dựng <br>
+                          <input type="radio" name="linhvucnghenghiepht" /> Giáo dục <br>
+                          <input type="radio" name="linhvucnghenghiepht" /> Y tế <br>
+                          <input type="radio" name="linhvucnghenghiepht" /> Khác (ghi rõ) <br>
+                          <input type="text" name="text_linhvucnghenghiepht" class="form-control" />
+                        </div>
+                      </div>
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Lĩnh vực nghề nghiệp trước đó
+                        </div>
+                        <div class="col-sm-4">
+                          <input type="radio" name="linhvucnghenghieptd" /> Tài chính, ngân hàng, bảo hiểm <br>
+                          <input type="radio" name="linhvucnghenghieptd" /> Truyền thông, báo chí <br>
+                          <input type="radio" name="linhvucnghenghieptd" /> Đoàn thể, hành chính <br>
+                          <input type="radio" name="linhvucnghenghieptd" /> An ninh, quốc phòng <br>
+                          <input type="radio" name="linhvucnghenghieptd" /> Thương mại, dịch vụ <br>
+                          <input type="radio" name="linhvucnghenghieptd" /> Văn hóa, nghệ thuậtc <br>
+                          <input type="radio" name="linhvucnghenghieptd" /> Nông, lâm, thủy sản <br>
+                        </div>
+                        <div class="col-sm-4">
+                          <input type="radio" name="linhvucnghenghieptd" /> Bất động sản <br>
+                          <input type="radio" name="linhvucnghenghieptd" /> Công nghiệp <br>
+                          <input type="radio" name="linhvucnghenghieptd" /> Viễn thông <br>
+                          <input type="radio" name="linhvucnghenghieptd" /> Xây dựng <br>
+                          <input type="radio" name="linhvucnghenghieptd" /> Giáo dục <br>
+                          <input type="radio" name="linhvucnghenghieptd" /> Y tế <br>
+                          <input type="radio" name="linhvucnghenghieptd" /> Khác (ghi rõ) <br>
+                          <input type="text" name="text_linhvucnghenghieptd" class="form-control" />
+                        </div>
+                      </div>
+
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Hình thức thanh toán lương
+                        </div>
+                        <div class="col-sm-4">
+                          <input type="radio" name="hinhthucthanhtoanluong" /> Chuyển khoản qua TK mở tại NH <br>
+                          <input type="radio" name="hinhthucthanhtoanluong" /> Chuyển khoản qua TK mở ở NH khác <br>
+                          <input type="radio" name="hinhthucthanhtoanluong" /> Tiền mặt <br>
+                          <input type="radio" name="hinhthucthanhtoanluong" /> Khác (ghi rõ) <br>
+                          <input type="text" class="form-control" name="text_hinhthucthanhtoanluong" />
+                        </div>
+                      </div>
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Số tài khoản mở tại NH khác
+                        </div>
+                        <div class="col-sm-4">
+                          <input type="text" class="form-control" />
+                        </div>
+                      </div>
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Tài khoản tại Ngân hàng
+                        </div>
+                        <div class="col-sm-4">
+                          <input type="text" class="form-control" />
+                        </div>
+                      </div>
+
+                      <div style="clear: both;margin-bottom: 10px;"></div>
+
+                    </div>
+                    <div style="clear: both;margin-bottom: 10px;"></div>
+                  </form>
+                </div>
+
+                <!-- is17FormGroup -->
+                <div *ngIf="is17FormGroup">
+                  <form>
+                    <div>
+                      <div style="margin-top: 20px">
+                        <div class="font-Roboto">
+                          <span>TÌNH HÌNH THU NHẬP </span>
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px">
+                        <div class="font-Roboto">
+                          <span>1. Tài sản </span>
+                        </div>
+                      </div>
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Loại tài sản
+                        </div>
+                        <div class="col-sm-4">
+                          <input type="text" class="form-control" placeholder="Mô tả tóm tắt tài sản" />
+                        </div>
+                      </div>
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                        </div>
+                        <div class="col-sm-2">
+                          <input type="radio" name="loaits" /> Sở hữu riêng
+                        </div>
+                        <div class="col-sm-2">
+                          <input type="radio" name="loaits" /> Sở hữu chung
+                        </div>
+                      </div>
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                        </div>
+                        <div class="col-sm-4">
+                          <input type="text" class="form-control" placeholder="Giá trị tài sản (VNĐ)" />
+                        </div>
+                      </div>
+                    </div>
+                    <div style="clear: both;margin-bottom: 10px;"></div>
+                  </form>
+                </div>
+
+                <!-- is18FormGroup -->
+                <div *ngIf="is18FormGroup">
+                  <form>
+                    <div>
+                      <div style="margin-top: 20px">
+                        <div class="font-Roboto">
+                          <span>TÌNH HÌNH THU NHẬP </span>
+                        </div>
+                      </div>
+                      <div style="margin-top: 20px">
+                        <div class="font-Roboto">
+                          <span>2. Nợ </span>
+                        </div>
+                        <div>
+                          <span>Các khoản nợ cá nhân, tổ chức, tổ chức tín dụng (bao gồm cả hạn mức thẻ tín dụng, nếu có), nợ phải trả khác</span>
+                        </div>
+                      </div>
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Bên cho vay
+                        </div>
+                        <div class="col-sm-4">
+                          <input type="text" class="form-control" placeholder="Tên bên cho vay" />
+                        </div>
+                      </div>
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Số tiền vay
+                        </div>
+                        <div class="col-sm-4">
+                          <input type="text" class="form-control" placeholder="Số tiền vay (VNĐ)" />
+                        </div>
+                      </div>
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Dư nợ
+                        </div>
+                        <div class="col-sm-4">
+                          <input type="text" class="form-control" placeholder="Dư nợ (VNĐ)" />
+                        </div>
+                      </div>
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Thời hạn vay
+                        </div>
+                        <div class="col-sm-4">
+                          <input type="text" class="form-control" placeholder="Thời hạn vay" />
+                        </div>
+                      </div>
+                      <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-2">
+                          Biện pháp bảo đảm
+                        </div>
+                        <div class="col-sm-4">
+                          <input type="radio" name="bienphapdambao" /> Không có bảo đảm <br>
+                          <input type="radio" name="bienphapdambao" /> Bảo đảm bằng tài sản <br>
+                          <input type="radio" name="bienphapdambao" /> Bảo đảm bằng bảo lãnh <br>
+                        </div>
+                      </div>
+                    </div>
+                    <div style="clear: both;margin-bottom: 10px;"></div>
+                  </form>
+                </div>
+
+                <!-- isFinishedFormGroup -->
+                <div *ngIf="isFinishedFormGroup">
+                  <div class="font-Roboto" style="margin-top: 26px; text-align: center; font-size: 36px;">
+                    Bạn đã mở tài khoản thành công!
+                    <p><button type="button" class="btn btn-warning" (click)="reloadPage()">Quay về trang chủ</button></p>
+                  </div>
+                  <p></p>
+                </div>
+
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="footer-button rounded" style="width: 100%;">
+                <button *ngIf="showBackStep" type="button" class="btn btn-secondary btn-back"
+                  style="background-color: #3F2763; border-color: #3F2763;" id="backStep" (click)="backStep()">Quay lại</button>
+                <button *ngIf="showStepNext" type="button" class="btn btn-warning btn-next" id="stepNext" (click)="stepNext()">Tiếp tục</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-sm-2"></div>
+      </div>
+
+    </div>
+  </div>
+</div>

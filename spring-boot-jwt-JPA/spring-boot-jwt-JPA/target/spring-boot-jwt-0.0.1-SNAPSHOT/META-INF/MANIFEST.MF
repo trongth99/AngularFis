@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Created-By: IntelliJ IDEA
+Built-By: MSI Bravo
+Build-Jdk: Oracle OpenJDK version 11.0.15
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.fis
+Main-Class: ${start-class}
+

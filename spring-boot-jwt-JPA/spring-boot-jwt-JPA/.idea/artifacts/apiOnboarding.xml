@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="apiOnboarding">
+    <output-path>$PROJECT_DIR$/out/artifacts/apiOnboarding</output-path>
+    <root id="archive" name="apiOnboarding.war" />
+  </artifact>
+</component>

@@ -1,0 +1,91 @@
+.popupphoneal {
+  position: absolute;
+  top: 20px;
+  right: calc(100% + 20px);
+  width: 240px;
+  background-color: #da2028;
+  border-radius: 5px;
+  color: #fff;
+  //opacity: 0;
+  //visibility: hidden;
+  //pointer-events: none;
+  -webkit-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+
+.popupphonemobile {
+  position: absolute;
+  top: -80px;
+  right: -5px;
+  width: 240px;
+  background-color: #da2028;
+  border-radius: 5px;
+  color: #fff;
+  -webkit-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+
+.popupphoneal table tr {
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.popupphoneal a {
+  color: #fff;
+}
+
+.popupphonemobile table tr {
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.popupphonemobile a {
+  color: #fff;
+}
+
+.support {
+  position: fixed;
+  bottom: 5%;
+  right: 15%;
+  width: 280px;
+  z-index: 1000;
+}
+
+.support .icon-call-support {
+  width: 60px;
+  animation: icon-call-support 1s infinite ease-in-out;
+}
+
+.support .icon-chat-support {
+  width: 60px;
+}
+
+@keyframes icon-call-support {
+  0% {
+    transform: rotate(0deg) scale(1) skew(1deg)
+  }
+  10% {
+    transform: rotate(-25deg) scale(1) skew(1deg)
+  }
+  20% {
+    transform: rotate(25deg) scale(1) skew(1deg)
+  }
+  30% {
+    transform: rotate(-25deg) scale(1) skew(1deg)
+  }
+  40% {
+    transform: rotate(25deg) scale(1) skew(1deg)
+  }
+  50% {
+    transform: rotate(0deg) scale(1) skew(1deg)
+  }
+  100% {
+    transform: rotate(0deg) scale(1) skew(1deg)
+  }
+}
+
+.change-pwd-form input::placeholder {
+  font-size: 9px;
+}

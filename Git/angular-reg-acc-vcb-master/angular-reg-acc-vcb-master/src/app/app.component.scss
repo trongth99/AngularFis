@@ -1,0 +1,122 @@
+.webcam-image {
+  width: 100%;
+  //border-radius: 20px;
+}
+
+.cus-webcam {
+  display: inline-block;
+  position: relative;
+  line-height: 20px;
+  border-radius: 10px;
+}
+
+.cus-pagination {
+  margin-right: 30px;
+}
+
+.page-item {
+  margin: 0px 5px 5px 5px;
+}
+
+.page-link {
+  background-color: #F3F3F3;
+  border-radius: 30%;
+  padding: 0.25rem 0.5rem;
+  color: #000000;
+}
+
+.page-link:hover {
+  background-color: #3F2763;
+  color: #ffffff;
+}
+
+.page-link.active {
+  background-color: #3F2763;
+  color: #ffffff;
+}
+
+.my-actions {
+  margin: 0 2em;
+}
+
+.order-1 {
+  order: 1;
+}
+
+.order-2 {
+  order: 2;
+}
+
+.xtgttt {
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  width: 100%;
+  height: calc(1.5em + 0.75rem + 2px);
+  background-color: rgba(33, 37, 41, 0.3);
+
+}
+.xtgttt p{
+  margin-top: 5px;
+}
+
+/*
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at center, lightblue 0%,#18cefb 100%);
+}
+*/
+
+.rating {
+  font-size: 40px;
+  height: 80px;
+  line-height: 70px;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.rating1:hover:before {
+  content: "😞";
+  position: absolute;
+  font-size: 60px;
+  margin-left: -10px;
+  /*-webkit-transform: scale(1.2);
+  -webkit-transform: rotate(30deg);*/
+}
+.rating2:hover:before {
+  content: "😣";
+  position: absolute;
+  font-size: 60px;
+  margin-left: -10px;
+  //-webkit-transform: rotate(15deg);
+}
+.rating3:hover:before {
+  content: "😐";
+  position: absolute;
+  font-size: 60px;
+  margin-left: -10px;
+}
+.rating4:hover:before {
+  content: "😎";
+  position: absolute;
+  font-size: 60px;
+  margin-left: -10px;
+ // -webkit-transform: rotate(-15deg);
+}
+.rating5:hover:before {
+  //content: "🤑";
+  content: "😍";
+  position: absolute;
+  font-size: 60px;
+  margin-left: -10px;
+  //-webkit-transform: rotate(-30deg);
+}
+.login.col,input[type="text"]::placeholder {
+  text-align: center;
+}
+.login.col,input[type="password"]::placeholder {
+  text-align: center;
+}

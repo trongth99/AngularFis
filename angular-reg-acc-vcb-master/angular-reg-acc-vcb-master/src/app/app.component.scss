@@ -1,0 +1,38 @@
+.webcam-image img {
+    width: 350px;
+}
+
+.cus-webcam {
+    display: inline-block;
+    position: relative;
+    line-height: 20px;
+}
+
+.cus-pagination {
+    margin-right: 30px;
+}
+
+.page-item {
+    margin: 0px 5px 5px 5px;
+}
+
+.page-link {
+    background-color: #F3F3F3;
+    border-radius: 30%;
+    padding: 0.25rem 0.5rem;
+    color: #000000;
+}
+
+.page-link:hover {
+    background-color: #3F2763;
+    color: #ffffff;
+}
+
+.page-link.active {
+    background-color: #3F2763;
+    color: #ffffff;
+}
+
+.my-actions { margin: 0 2em; }
+.order-1 { order: 1; }
+.order-2 { order: 2; }

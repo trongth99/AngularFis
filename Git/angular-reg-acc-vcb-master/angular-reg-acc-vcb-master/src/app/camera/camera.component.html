@@ -1,0 +1,58 @@
+<div *ngIf="isCameraExist; else noCameraExist" (window:resize)="onResize($event)">
+  <div>
+    <webcam style="border-radius: 10px;" [height]="height" [width]="width" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
+            *ngIf="showWebcam" [switchCamera]="nextWebcamObservable"></webcam>
+
+    <div class="content" *ngIf="typecam == 'CCCD_Front'">
+      <div>
+        <span>Chụp mặt trước CMND/CCCD</span>
+      </div>
+
+      <button type="button" class="btn-step" style="margin-top: 10px;"
+              (click)="btnGTTTItem('front'); takeSnapshot();">{{ btnWebcamFront }}
+      </button>
+      <div style="margin-bottom: 5px;"></div>
+    </div>
+
+    <div class="content" *ngIf="typecam == 'CCCD_Back'">
+      <div>
+        <span>Chụp mặt sau CMND/CCCD</span>
+      </div>
+
+      <button type="button" class="btn-step" style="margin-top: 10px;"
+              (click)="btnGTTTItem('back'); takeSnapshot();">{{ btnWebcamBack }}
+      </button>
+      <div style="margin-bottom: 5px;"></div>
+    </div>
+
+    <div class="content" *ngIf="typecam == 'face'">
+      <div>
+        <span>Xác thực khuôn mặt</span>
+      </div>
+
+      <div>
+        * Vui lòng quay video không quá sát camera và cử động gương mặt tự nhiên trong vài giây.
+      </div>
+
+      <div *ngIf="isCheckingFace && !reShowBtnFace" style="margin-top: 12px;">
+        <span style="color: red;">Hệ thống đang thực hiện ghi hình khuôn mặt của bạn...</span>
+      </div>
+
+      <button type="button" class="btn-step" style="margin-top: 10px;"
+              (click)="btnGTTTItem('face'); takeSnapshots();">{{ btnWebcamFace }}
+      </button>
+      <div style="margin-bottom: 5px;"></div>
+    </div>
+  </div>
+
+  <div *ngIf="errors.length > 0">
+    <h4>Error Messages:</h4>
+    <ul *ngFor="let error of errors">
+      <li>{{ error | json }}</li>
+    </ul>
+  </div>
+</div>
+
+<ng-template #noCameraExist>
+  Thiết bị máy ảnh không khả dụng.
+</ng-template>

@@ -1,0 +1,136 @@
+/* You can add global styles to this file, and also import other style files */
+@import './assets/css/common.css';
+@import "~bootstrap/dist/css/bootstrap.min.css";
+$fa-font-path: "~font-awesome/fonts";
+@import '~font-awesome/scss/font-awesome';
+
+@media only screen and (max-width: 900px) {
+    .box-header>.box-tools {
+        position: relative;
+        left: 0px;
+    }
+}
+
+label.error {
+    font-weight: normal !important;
+    color: red;
+}
+
+.col-xs-12 {
+    background: white;
+}
+
+.img-thumbnail {
+    max-width: 400px;
+    max-height: 150px;
+}
+
+.btn-warning,
+.btn-warning:hover {
+    background-color: #3F2763;
+    border-color: #3F2763;
+    color: #FFF;
+}
+
+.bg-header {
+    background-color: #3F2763 !important;
+}
+
+.header-selected,
+.footer-button {
+    background: #BBBBBB;
+}
+
+.triangle-active-border {
+    border-left: 12px solid #BBBBBB;
+}
+
+.triangle-active-border1 {
+    border-left-color: #C4C4C4;
+}
+
+.capture-image {
+    overflow: hidden;
+    height: 290px;
+}
+
+.btn-ggtt {
+    height: 45px;
+    line-height: 45px;
+    background: #94c847;
+    font-family: "Muli-B";
+    font-size: 15px;
+    float: right;
+    margin-left: 1px;
+    padding: 0px 5px;
+    border-radius: 3px;
+    margin-top: 18px;
+}
+
+.btn-ggtt a {
+    color: #FFF;
+    font-weight: bold;
+}
+
+.btn-tracuu {
+    float: right;
+    margin-left: 1px;
+    margin-top: 18px;
+}
+
+.hotline-toptvb {
+    height: 45px;
+    line-height: 45px;
+    color: #3F2763;
+    border: solid 2px #94c847;
+    border-radius: 2px;
+    font-family: "Muli-B";
+    font-size: 15px;
+    float: right;
+    margin-left: 0px;
+    padding: 0px 5px;
+    margin-top: 18px;
+}
+
+.lang {
+    float: right;
+    margin-top: 10px;
+    text-align: right;
+}
+
+.flag-en {
+    background: url(./assets/img/en.png) no-repeat;
+    align-self: center;
+}
+
+.flag-vn {
+    background: url(./assets/img/vn.png) no-repeat;
+    align-self: center;
+}
+
+.flag-vn,
+.flag-en {
+    width: 26px;
+    height: 26px;
+    display: inline-block;
+}
+
+.company-email {
+    height: 45px;
+    line-height: 45px;
+    font-family: "Muli-B";
+    font-size: 14px;
+    margin-right: 10px;
+    padding-left: 30px;
+    color: #FFF;
+    text-align: right;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .hd1,
+    .company-email {
+        text-align: center;
+    }
+
+}

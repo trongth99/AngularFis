@@ -1,0 +1,284 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 mx-auto cus-card">
+      <div class="card shadow border">
+        <div class="card-body flex-column cus-card-body">
+
+          <p>
+            <strong style="font-size: 16px;">Danh sách hợp đồng</strong>
+            <br/>
+            <span class="spinner-border spinner-border-sm" *ngIf="isLoading" role="status" aria-hidden="true"></span>
+            <span style="color: #8C8C8C;">Có {{ total }} hợp đồng</span>
+          </p>
+
+          <table class="table table-borderless">
+            <thead>
+            <tr>
+              <th scope="col">STT</th>
+              <th scope="col">Tên hợp đồng</th>
+              <th scope="col">Trạng thái</th>
+              <th scope="col">Ngày tạo</th>
+              <th scope="col">Ngày ký</th>
+              <th scope="col">Tác vụ</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of dataList; let i = index">
+              <th>{{ limit * (pageActive - 1) + (i + 1) }}</th>
+              <td>{{ item.contractName }}</td>
+              <td>
+                <button
+                  [ngClass]="{'cus-btn-status-danger': item.status === 'chuaky', 'cus-btn-status-primary' : item.status === 'daky' || item.status === '1' }">{{ getTrangThai(item.status)[0] }}</button>
+              </td>
+              <td>{{ item.createdDate }}</td>
+              <td>{{ getNgayKy(item.signedDate) }}</td>
+              <td>
+                <button *ngIf="item.status != 'chuaky'"
+                        [ngClass]="{'cus-btn-danger': item.status=== 'chuaky', 'cus-btn-primary' : item.status === 'daky' || item.status === '1' }"
+                        (click)="open(content, item.status, item.contractCode)">{{ getTrangThai(item.status)[1] }}</button>
+
+                <button *ngIf="item.status === 'chuaky'"
+                        [ngClass]="{'cus-btn-danger': item.status === 'chuaky'}"
+                        (click)="openConfirmTerm(content_term, item.contractCode)">
+                  {{ getTrangThai(item.status)[1] }} <img class="img-sign" src="./assets/img/sign.svg">
+                </button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+
+          <nav class="cus-pagination" aria-label="Page navigation">
+            <ul class="pagination justify-content-end">
+              <li class="page-item"></li>
+              <li [ngClass]="pageActive == 1 ? 'page-item disabled' : 'page-item'">
+                <a class="page-link" href="javascript:void(0);" (click)="getData(pageActive-1, limit)" tabindex="-1">&#60;</a>
+              </li>
+              <li class="page-item" *ngFor="let in of counter(totalPage); let i = index"><a
+                [ngClass]="pageActive == i+1 ? 'page-link active' : 'page-link'" href="javascript:void(0);"
+                (click)="getData(i+1, limit)">{{ i + 1 }}</a></li>
+              <li [ngClass]="pageActive == totalPage ? 'page-item disabled' : 'page-item'">
+                <a class="page-link" href="javascript:void(0);" (click)="getData(pageActive+1, limit)">&#62;</a>
+              </li>
+              <li class="page-item"></li>
+            </ul>
+          </nav>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="padding-bottom: 60px;"></div>
+</div>
+
+<ng-template #content="" let-modal="">
+  <button class="close" type="button" aria-label="Close" (click)="modal.dismiss('Cross click')"><span
+    aria-hidden="true" class="x-close">&times;</span></button>
+  <br>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title1">{{ _modal_title$ }}</h4>
+  </div>
+  <div class="modal-body">
+<!--    <div><a *ngIf="!isLoading" href="javascript:void(0);"-->
+<!--            (click)="downloadPdf(data$.contentContract, 'HDS-' + data$.contractName); modal.close('Cancel click');">Tải-->
+<!--      xuống</a>&nbsp;<i class="fa fa-download" aria-hidden="true"></i></div>-->
+    <div class="pdf-container">
+      <span class="spinner-border spinner-border-sm" *ngIf="isLoading" role="status" aria-hidden="true"></span>
+      <span *ngIf="isLoading">đang tải hợp đồng ...</span>
+      <pdf-viewer
+        [src]="showBase64(data$.contentContract)"
+        [rotation]="0" [original-size]="false" [show-all]="true"
+        [fit-to-page]="false" [zoom]="1" [zoom-scale]="'page-width'" [stick-to-page]="false"
+        [render-text]="true" [external-link-target]="'blank'" [autoresize]="true" [show-borders]="false"
+        [style]="pdfStyle"
+      >
+      </pdf-viewer>
+    </div>
+
+    <p>&nbsp;</p>
+    <p *ngIf="!isLoading && isSign">
+      <input type="checkbox" [(ngModel)]="checked3">
+      Bên vay xác nhận và cam kết: bên vay đã đọc, hiểu, chấp nhận tất cả các nội dung của hợp đồng tín dụng và bản điều khoản và điều kiện chung.
+    </p>
+
+  </div>
+  <div class="modal-footer">
+    <span class="spinner-border spinner-border-sm" *ngIf="isLoading" role="status" aria-hidden="true"></span>
+    <button class="btn btn-danger" *ngIf="isView" type="button" (click)="modal.dismiss('Cross click')"
+            [disabled]="isLoading ? 'disabled': null">Đóng
+    </button>
+    <button class="btn btn-danger"
+            *ngIf="isSign" type="button"
+            (click)="openOtp(content_otp, data$.contractCode); modal.dismiss('Cross click');"
+            [disabled]="isLoading || !checked3 ? 'disabled': null"> Ký hợp đồng
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #content_term="" let-modal="">
+  <button class="close" type="button" aria-label="Close" (click)="modal.dismiss('Cross click')"><span
+    aria-hidden="true" class="x-close">&times;</span></button>
+  <br>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title2">Điều khoản & chính sách</h4>
+  </div>
+  <div class="modal-body">
+    <p>
+      <input type="checkbox" [(ngModel)]="checked1">
+      <a href="javascript:void(0);" (click)="openConfirmTerm(content_term_1, '')"> Tôi đã đọc và đống ý điều khoản và điều kiện sử dụng dịch vụ điện tử. </a>
+    </p>
+    <p>
+      <input type="checkbox" [(ngModel)]="checked2">
+      <a href="javascript:void(0);" (click)="openConfirmTerm(content_term_2, '')"> Tôi đồng ý đơn đề nghị, điều khoản và điều kiện cung cấp dịch vụ chứng thực chữ ký số công cộng FPT.CA </a>
+    </p>
+  </div>
+  <div class="modal-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3">
+        </div>
+        <div class="col-sm-7">
+        </div>
+        <div class="col-sm-2">
+          <button class="btn btn-danger" type="button"
+                  (click)="open(content, 'chuaky', data$.contractCode); modal.dismiss('Cross click');"
+                  [disabled]="!checked1 || !checked2 ? 'disabled': null">Đồng ý
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #content_term_1="" let-modal="">
+  <button class="close" type="button" aria-label="Close" (click)="modal.dismiss('Cross click')"><span
+    aria-hidden="true" class="x-close">&times;</span></button>
+  <br>
+  <div class="modal-header">
+  </div>
+  <div class="modal-body">
+    <div class="pdf-container">
+      <span class="spinner-border spinner-border-sm" *ngIf="isLoading" role="status" aria-hidden="true"></span>
+      <span *ngIf="isLoading">đang tải ...</span>
+      <pdf-viewer
+        src="./assets/files/20211109_DIEU_KHOAN_DIEU_KIEN_SU_DUNG_DICH_VU_DIEN_TU___20211104_DIEU_KHOAN_DIEU_KIEN_SU_DUNG_UNG_DUNG_HD_SAISON___Chu_ky_dien_tu___V2_2.pdf"
+        [rotation]="0" [original-size]="false" [show-all]="true"
+        [fit-to-page]="false" [zoom]="1" [zoom-scale]="'page-width'" [stick-to-page]="false"
+        [render-text]="true" [external-link-target]="'blank'" [autoresize]="true" [show-borders]="false"
+        [style]="pdfStyle"
+      >
+      </pdf-viewer>
+    </div>
+  </div>
+  <div class="modal-footer">
+  </div>
+</ng-template>
+
+<ng-template #content_term_2="" let-modal="">
+  <button class="close" type="button" aria-label="Close" (click)="modal.dismiss('Cross click')"><span
+    aria-hidden="true" class="x-close">&times;</span></button>
+  <br>
+  <div class="modal-header">
+  </div>
+  <div class="modal-body">
+    <div class="pdf-container">
+      <span class="spinner-border spinner-border-sm" *ngIf="isLoading" role="status" aria-hidden="true"></span>
+      <span *ngIf="isLoading">đang tải ...</span>
+      <pdf-viewer
+        src="./assets/files/dichvudientu-fpt-com-vn-content-dieu-kien-va-dieu-khoan-su-dung-HDS.pdf"
+        [rotation]="0" [original-size]="false" [show-all]="true"
+        [fit-to-page]="false" [zoom]="1" [zoom-scale]="'page-width'" [stick-to-page]="false"
+        [render-text]="true" [external-link-target]="'blank'" [autoresize]="true" [show-borders]="false"
+        [style]="pdfStyle"
+      >
+      </pdf-viewer>
+    </div>
+  </div>
+  <div class="modal-footer">
+  </div>
+</ng-template>
+
+<!--<ng-template #content_confirm_sign="" let-modal="">-->
+<!--  <button class="close" type="button" aria-label="Close" (click)="modal.dismiss('Cross click')"><span-->
+<!--    aria-hidden="true" class="x-close">&times;</span></button>-->
+<!--  <br>-->
+<!--  <div class="modal-header">-->
+<!--    <h4 class="modal-title" id="modal-basic-title3">Bạn có chắc chắn muốn ký hợp đồng này?</h4>-->
+<!--  </div>-->
+<!--  <div class="modal-footer">-->
+<!--    <span class="spinner-border spinner-border-sm" *ngIf="isLoading" role="status" aria-hidden="true"></span>-->
+<!--    <button class="btn btn-danger" type="button"-->
+<!--            (click)="openOtp(content_otp, data$.contractCode); modal.dismiss('Cross click');"-->
+<!--            [disabled]="isLoading ? 'disabled': null">Ký ngay-->
+<!--    </button>-->
+<!--  </div>-->
+<!--</ng-template>-->
+
+<ng-template #content_otp="" let-modal="">
+  <button class="close" type="button" aria-label="Close" (click)="modal.dismiss('Cross click')"><span
+    aria-hidden="true" class="x-close">&times;</span></button>
+  <br>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title4">Nhập mã OTP</h4>
+  </div>
+  <div class="modal-body">
+    <p><b>Mã OTP đã được gửi vào số điện thoại của quý khách. Vui lòng nhập mã để xác nhận đăng ký.</b></p>
+    <p>( {{ dataRegSign.otp }} )</p>
+    <div>
+      <form>
+        <ng-otp-input [config]="conf_otp_input" (onInputChange)="onOtpChange($event)"></ng-otp-input>
+        <p style="color: red">{{ messOTP }}</p>
+        <p><b>Bạn chưa nhận được mã OTP?</b></p>
+        <p><a href="javascript:void(0);" style="color: #DA2028;" (click)="dangKyChuKySo(data$.contractCode)"><b>Gửi lại OTP</b></a></p>
+        <input hidden name="otp" [(ngModel)]="otpCorrect" required>
+        <input id="otp_close" type="button" hidden name="otp_close" (click)="modal.close('Cancel click');">
+      </form>
+    </div>
+  </div>
+  <div class="modal-footer opt-custom">
+    <span class="spinner-border spinner-border-sm" *ngIf="isLoading" role="status" aria-hidden="true"></span>
+    <button class="btn btn-danger" type="button"
+            (click)="kySo(data$.contractCode, completed_sign);"
+            [disabled]="isLoading ? 'disabled': null">Tiếp tục
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #completed_sign="" let-modal="">
+  <button class="close" type="button" aria-label="Close" (click)="modal.dismiss('Cross click')"><span
+    aria-hidden="true" class="x-close">&times;</span></button>
+  <br>
+  <div class="modal-header">
+  </div>
+  <div class="modal-body">
+    <p style="text-align: center;">
+      <img src="./assets/img/hands.svg" style="width: 60px;">
+    </p>
+    <p>
+      Chúc mừng quý khách [Customer Name] đã ký thành công hợp đồng [Số hợp đồng] với:
+    </p>
+    <p>
+      <span>- Số tiền vay: [Loan Amount] đồng</span><br>
+      <span>- Số tiền thanh toán hàng tháng: [EMI full] đồng</span><br>
+      <span>- Ngày thanh toán đầu tiên: [dd/mm/yyyy]</span><br>
+      <span>- Ngày thanh toán hàng tháng: [instalment day]</span><br>
+    </p>
+    <div class="row">
+      <div class="col" style="text-align: center;">
+        <a href="javascript:void(0);" (click)="downloadPdf(data$.contentContract, 'HDS-' + data$.contractName);"><img src="./assets/img/download.svg" style="width: 60px;"></a>
+        <p>Tải hợp đồng</p>
+      </div>
+      <div class="col" style="text-align: center;">
+        <a href="https://www.hdsaison.com.vn/app-download.html" target="_blank"><img src="./assets/img/loan_online.svg" style="width: 60px;"></a>
+        <p>Vay trực tuyến</p>
+      </div>
+      <div class="col" style="text-align: center;">
+        <a href="https://www.hdsaison.com.vn/vn/uu-dai.html" target="_blank"><img src="./assets/img/info.svg" style="width: 60px;"></a>
+        <p>Sản phẩm và khuyến mại</p>
+      </div>
+      <div class="col" style="text-align: center;">
+        <a href="https://www.hdsaison.com.vn/vn/huong-dan-thanh-toan.html" target="_blank"><img src="./assets/img/gui.svg" style="width: 60px;"></a>
+        <p>Hướng dẫn thanh toán</p>
+      </div>
+    </div>
+  </div>
+</ng-template>

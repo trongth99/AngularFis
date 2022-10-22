@@ -1,0 +1,33 @@
+<div *ngIf="isCameraExist; else noCameraExist">
+    <div>        
+        <webcam [height]="350" [width]="350" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
+            *ngIf="showWebcam" [switchCamera]="nextWebcamObservable"></webcam>
+
+        <br />
+        <div>
+            <button *ngIf="showbtn" type="button" class="font-Roboto btn btn-warning" style="margin-top: 10px;" (click)="takeSnapshot()">Chụp Ảnh</button>
+
+            <button *ngIf="!showbtn" type="button" class="font-Roboto btn btn-warning" style="margin-top: 10px;"
+                (click)="takeSnapshots()">Bắt Đầu Xác Thực</button>
+            &nbsp;
+            <button type="button" class="font-Roboto btn btn-warning" style="margin-top: 10px;"
+                (click)="changeWebCame(true)">Chuyển Camera</button>
+            <!-- <button (click)="onOffWebCame()">Tắt Camera</button> -->
+        </div> 
+
+        <div *ngIf="!showbtn && isCheckingFace" class="font-Roboto margin-top: 12px">
+            <span style="color: red;">Hệ thống đang thực hiện ghi hình khuôn mặt của bạn...</span>
+        </div>
+    </div>
+
+    <div *ngIf="errors.length > 0">
+        <h4>Error Messages:</h4>
+        <ul *ngFor="let error of errors">
+            <li>{{ error | json }}</li>
+        </ul>
+    </div>
+</div>
+
+<ng-template #noCameraExist>
+    Thiết bị máy ảnh không khả dụng.
+</ng-template>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="fis.com.vn.common.StringUtils"/>
+    <fullyQualifiedTypeName name="java.lang.Boolean"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="java.util.UUID"/>
+    <fullyQualifiedTypeName name="java.util.HashMap"/>
+    <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="fis.com.vn.entities.ReturnRest"/>
+    <fullyQualifiedTypeName name="fis.com.vn.captcha.Captcha"/>
+    <fullyQualifiedTypeName name="fis.com.vn.captcha.CaptchaImage"/>
+    <fullyQualifiedTypeName name="fis.com.vn.captcha.CaptchaMap"/>
+    <fullyQualifiedTypeName name="java.util.stream.Collectors"/>
+    <fullyQualifiedTypeName name="java.util.Set"/>
+    <fullyQualifiedTypeName name="java.util.Base64"/>
+    <fullyQualifiedTypeName name="org.json.JSONArray"/>
+    <fullyQualifiedTypeName name="org.keycloak.adapters.springsecurity.token.KeycloakAuthenticationToken"/>
+    <fullyQualifiedTypeName name="org.keycloak.KeycloakPrincipal"/>
+    <fullyQualifiedTypeName name="org.keycloak.KeycloakSecurityContext"/>
+    <fullyQualifiedTypeName name="org.keycloak.representations.AccessToken"/>
+    <fullyQualifiedTypeName name="org.keycloak.representations.AccessToken.Access"/>
+    <fullyQualifiedTypeName name="fis.com.vn.keycloak.RolesKeycloak"/>
+    <fullyQualifiedTypeName name="fis.com.vn.exception.CheckException"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
+    <fullyQualifiedTypeName name="org.springframework.web.client.RestTemplate"/>
+    <fullyQualifiedTypeName name="org.json.JSONObject"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="fis.com.vn.common.GoogleCapchaService"/>
+    <fullyQualifiedTypeName name="javax.persistence.Transient"/>
+    <fullyQualifiedTypeName name="fis.com.vn.exception.ValidException"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
+</qualifiedTypeNameHistroy>

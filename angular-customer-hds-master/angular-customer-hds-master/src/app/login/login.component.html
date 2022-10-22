@@ -1,0 +1,204 @@
+<div class="container login-container">
+  <div class="row">
+    <div *ngIf="!isMobile" class="col-md-7 login-form-1"></div>
+
+    <div *ngIf="!isNewLogin" class="col-md-5 login-form-2">
+      <form
+        *ngIf="!isLoggedIn"
+        name="form"
+        (ngSubmit)="f.form.valid && onSubmit()"
+
+        novalidate
+      >
+        <div class="form-group cus-text-login">
+          <img src="./assets/img/logo.png" width="100px">
+        </div>
+        <div class="form-group cus-text-login">
+          <b style="font-size: 16px;">Đăng Nhập</b>
+        </div>
+        <div class="form-group">
+          <p style="height: 10px;"></p>
+        </div>
+
+        <div class="form-group">
+          <b>ID</b>
+          <input
+            type="text"
+            class="form-control"
+            name="username"
+            [(ngModel)]="form.username"
+            required
+            #username="ngModel"
+            placeholder="Tên đăng nhập *"
+          />
+          <div class="alert alert-danger" role="alert" *ngIf="username.errors && f.submitted">
+            Bạn chưa nhập tên đăng nhập!
+          </div>
+        </div>
+
+        <div class="form-group">
+          <p>Mật khẩu</p>
+          <div class="input-group cus-pwd">
+            <input
+              [type]="show_button ? 'text' : 'password'"
+              class="form-control"
+              name="password"
+              [(ngModel)]="form.password"
+              required
+              minlength="5"
+              #password="ngModel"
+              placeholder="Nhập mật khẩu *"
+            />
+            <div class="input-group-append">
+              <span class="input-group-text">
+                <i [class]="show_eye ? 'fa fa-eye' : 'fa fa-eye-slash'" (click)="showPassword()"></i>
+              </span>
+            </div>
+          </div>
+
+          <div class="alert alert-danger" role="alert" *ngIf="password.errors && f.submitted">
+            <div *ngIf="password.errors?.['required']">Bạn chưa nhập mật khẩu!</div>
+            <div *ngIf="password.errors?.['minlength']">
+              Mật khẩu phải có ít nhất 5 ký tự
+            </div>
+          </div>
+
+        </div>
+
+        <!-- <div class="form-group">
+            <b>Mã kiểm tra</b>
+            <p>
+                <img [src]="showBase64(imgCaptcha)" /> &nbsp;&nbsp;&nbsp;&nbsp; <a (click)="captCha()"><i [ngClass]="isLoadingCaptcha ? 'fa fa-refresh fa-spin' : 'fa fa-refresh'" aria-hidden="true" style="font-size:36px"></i></a>
+            </p>
+            <input type="text" class="form-control" name="captcha" [(ngModel)]="form.captcha" required #captcha="ngModel" placeholder="Nhập mã captcha *" />
+            <div class="alert alert-danger" role="alert" *ngIf="captcha.errors && f.submitted">
+                <div *ngIf="captcha.errors?.['required']">Bạn chưa mã kiểm tra!</div>
+            </div>
+        </div> -->
+
+        <div class="form-group">
+          <a routerLink="/forgot-password" class="ForgetPwd">Quên mật khẩu</a>
+        </div>
+        <div class="form-group">
+          <p style="height: 20px;"></p>
+        </div>
+        <div class="form-group">
+          <span class="spinner-border spinner-border-sm" *ngIf="isLoading" role="status" aria-hidden="true"></span>
+          <button type="submit" class="btnSubmit" [disabled]="isLoading ? 'disabled': null">Đăng nhập</button>
+        </div>
+        <div class="form-group">
+          <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isLoginFailed">
+            Lỗi đăng nhập: {{ errorMessage }}
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div *ngIf="isNewLogin" class="col-md-5 login-form-2 change-pwd-form">
+      <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && confirmPwd()" #f="ngForm"
+            novalidate>
+        <div class="form-group cus-text-login">
+          <img src="./assets/img/logo.png" width="100px">
+        </div>
+        <div class="form-group cus-text-login">
+          <b style="font-size: 16px;">Để ký hợp đồng điện tử, Quý khách vui lòng:</b>
+        </div>
+
+        <div class="form-group">
+          <p><b>Đặt mật khẩu</b></p>
+          <div class="input-group">
+            <input name="newpwd" [type]="show_button1 ? 'text' : 'password'" class="form-control" [(ngModel)]="newpwd"
+                   placeholder="6-12 ký tự, bao gồm chữ viết hoa, số và ký tự đặc biệt
+">
+            <div class="input-group-append">
+              <span class="input-group-text">
+                  <i [class]="show_eye1 ? 'fa fa-eye' : 'fa fa-eye-slash'" (click)="showNewPassword(1)"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <p><b>Xác nhận mật khẩu</b></p>
+          <div class="input-group">
+            <input name="renewpwd" [type]="show_button2 ? 'text' : 'password'" class="form-control" [(ngModel)]="renewpwd"
+                   placeholder="Nhập lại mật khẩu">
+            <div class="input-group-append">
+              <span class="input-group-text">
+                  <i [class]="show_eye2 ? 'fa fa-eye' : 'fa fa-eye-slash'" (click)="showNewPassword(2)"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <p style="height: 10px;"></p>
+        </div>
+        <div class="form-group">
+          <span class="spinner-border spinner-border-sm" *ngIf="isLoading" role="status" aria-hidden="true"></span>
+          <button type="submit" class="btnSubmit" [disabled]="isLoading ? 'disabled': null">Đồng ý</button>
+        </div>
+        <div class="form-group">
+          <p style="height: 10px;"></p>
+        </div>
+        <div class="form-group">
+          <div class="alert alert-danger" role="alert" *ngIf="f.submitted && errorMessage">
+            Lỗi đặt mật khẩu: {{ errorMessage }}
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="row support">
+      <div class="col"></div>
+      <div class="col" style="text-align: center;">
+        <img class="icon-call-support" src="./assets/img/switchboard.svg" (click)="showCallSupport()">
+
+        <div [class]="isMobile ? 'popupphonemobile' : 'popupphoneal'" [style]="isShowCallSupport ? '': 'display: none;'">
+          <table style="width: 100%;">
+            <tr>
+              <td>&nbsp;</td>
+              <td>TOÀN QUỐC</td>
+              <td>&nbsp;</td>
+              <td>
+                <a href="tel:1900 558854">
+                  <i class="fa fa-phone"></i>&nbsp;
+                  <span>1900 558854</span>
+                </a>
+              </td>
+            </tr>
+
+            <tr>
+              <td>&nbsp;</td>
+              <td>TP. HỒ CHÍ MINH</td>
+              <td>&nbsp;</td>
+              <td>
+                <a href="tel:(84-28) 5413 7483">
+                  <i class="fa fa-phone"></i>&nbsp;
+                  <span>(84-28) 5413 7483</span>
+                </a>
+              </td>
+            </tr>
+
+            <tr>
+              <td>&nbsp;</td>
+              <td>HÀ NỘI</td>
+              <td>&nbsp;</td>
+              <td>
+                <a href="tel:(84-24) 7306 3979">
+                  <i class="fa fa-phone"></i>&nbsp;
+                  <span>(84-24) 7306 3979</span>
+                </a>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <p><b>Liên hệ tổng đài viên</b></p>
+      </div>
+      <div class="col" style="text-align: center;">
+        <img class="icon-chat-support" src="./assets/img/chat_support.svg">
+        <p><b>Chat với HD SAISON</b></p>
+      </div>
+    </div>
+
+  </div>
+</div>
